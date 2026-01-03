@@ -1,6 +1,26 @@
 from __future__ import annotations
 
+import base64
+from pathlib import Path
+
 import streamlit as st
+
+
+BASE_DIR = Path(__file__).resolve().parents[1]
+
+
+def _asset_path(filename: str) -> str:
+    return str(BASE_DIR / "images" / filename)
+
+
+def _img_data_uri(filename: str) -> str:
+    path = BASE_DIR / "images" / filename
+    if not path.exists():
+        return ""
+    suffix = path.suffix.lower()
+    mime = "image/png" if suffix == ".png" else "image/jpeg"
+    encoded = base64.b64encode(path.read_bytes()).decode("ascii")
+    return f"data:{mime};base64,{encoded}"
 
 
 LANDING_CSS = """
@@ -9,18 +29,18 @@ LANDING_CSS = """
     margin: 32px 0;
 }
 .lp-hero-title {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 12px;
     line-height: 1.6;
 }
 .lp-subtitle {
-    font-size: 15px;
+    font-size: 18px;
     color: #6B7280;
     line-height: 1.7;
 }
 .lp-trust {
-    font-size: 12px;
+    font-size: 18px;
     color: #6B7280;
     margin-top: 8px;
 }
@@ -38,13 +58,22 @@ LANDING_CSS = """
 }
 .lp-card h4 {
     margin: 8px 0 6px 0;
-    font-size: 15px;
+    font-size: 18px;
 }
 .lp-card p {
     margin: 0;
-    font-size: 13px;
+    font-size: 18px;
     color: #6B7280;
     line-height: 1.7;
+}
+.lp-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    background: #DBEAFE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .lp-benefit-icon,
 .lp-pain-icon {
@@ -57,6 +86,12 @@ LANDING_CSS = """
     justify-content: center;
     font-size: 18px;
 }
+.lp-card-icon img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    display: block;
+}
 .lp-steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -68,6 +103,7 @@ LANDING_CSS = """
     border-radius: 12px;
     padding: 16px 20px;
     text-align: center;
+    font-size: 18px;
 }
 .lp-step span {
     font-size: 22px;
@@ -109,8 +145,11 @@ LANDING_CSS = """
     padding-right: 18px;
     margin: 8px 0 0 0;
     color: #6B7280;
-    font-size: 13px;
+    font-size: 18px;
     line-height: 1.7;
+}
+.lp-output-item strong {
+    font-size: 18px;
 }
 .lp-cta-anchor {
     display: none;
@@ -131,7 +170,22 @@ div[data-testid="stVerticalBlock"]:has(> .lp-cta-anchor) .stButton > button:hove
     color: #FFFFFF;
 }
 @media (max-width: 900px) {
-    .lp-hero-title { font-size: 24px; }
+    .lp-hero-title { font-size: 26px; }
+    .lp-subtitle { font-size: 16px; }
+    .lp-trust { font-size: 16px; }
+    .lp-card h4 { font-size: 16px; }
+    .lp-card p { font-size: 16px; }
+    .lp-step { font-size: 16px; }
+    .lp-output-item ul { font-size: 16px; }
+    .lp-output-item strong { font-size: 16px; }
+    .lp-card-grid,
+    .lp-steps,
+    .lp-output {
+        grid-template-columns: 1fr;
+    }
+    .lp-card {
+        padding: 14px 16px;
+    }
 }
 </style>
 """
@@ -154,6 +208,10 @@ def _cta_button(key: str) -> None:
 
 def render_landing_page() -> None:
     st.markdown(LANDING_CSS, unsafe_allow_html=True)
+
+    top_left, top_right = st.columns([0.88, 0.12])
+    with top_right:
+        st.image(_asset_path("عیارمهارت.jpg"), width=90)
 
     col_left, col_right = st.columns([1.2, 1])
     with col_left:
@@ -184,22 +242,26 @@ def render_landing_page() -> None:
             unsafe_allow_html=True,
         )
 
+    confusion_img = _img_data_uri("سردرگمی مسیر.png")
+    cost_img = _img_data_uri("هزینه‌های اشتباه.png")
+    market_img = _img_data_uri("فاصله تا بازار.png")
+
     st.markdown(
-        """
+        f"""
         <div class="lp-section">
             <div class="lp-card-grid">
                 <div class="lp-card">
-                    <div class="lp-pain-icon">\U0001F914</div>
+                    <div class="lp-card-icon"><img src="{confusion_img}" alt="سردرگمی مسیر"></div>
                     <h4>\u0633\u0631\u062f\u0631\u06af\u0645\u06cc \u0645\u0633\u06cc\u0631</h4>
                     <p>\u0627\u0632 \u0645\u06cc\u0627\u0646 \u062f\u0647\u200c\u0647\u0627 \u0645\u0633\u06cc\u0631\u060c \u06a9\u062f\u0627\u0645 \u0628\u0631\u0627\u06cc \u062a\u0648 \u0645\u0646\u0627\u0633\u0628 \u0627\u0633\u062a\u061f</p>
                 </div>
                 <div class="lp-card">
-                    <div class="lp-pain-icon">\U0001F4B8</div>
+                    <div class="lp-card-icon"><img src="{cost_img}" alt="هزینه‌های اشتباه"></div>
                     <h4>\u0647\u0632\u06cc\u0646\u0647\u200c\u0647\u0627\u06cc \u0627\u0634\u062a\u0628\u0627\u0647</h4>
                     <p>\u062f\u0648\u0631\u0647\u200c\u0647\u0627\u06cc \u063a\u06cc\u0631\u0645\u0631\u062a\u0628\u0637 \u0648 \u0628\u06cc\u200c\u0628\u0627\u0632\u062f\u0647 \u0648\u0642\u062a \u0648 \u067e\u0648\u0644 \u0631\u0627 \u0647\u062f\u0631 \u0645\u06cc\u200c\u062f\u0647\u062f.</p>
                 </div>
                 <div class="lp-card">
-                    <div class="lp-pain-icon">\u26A0\ufe0f</div>
+                    <div class="lp-card-icon"><img src="{market_img}" alt="فاصله تا بازار"></div>
                     <h4>\u0641\u0627\u0635\u0644\u0647 \u062a\u0627 \u0628\u0627\u0632\u0627\u0631</h4>
                     <p>\u06cc\u0627\u062f\u06af\u06cc\u0631\u06cc \u0628\u0627\u06cc\u062f \u0628\u0647 \u0634\u063a\u0644 \u0628\u0631\u0633\u062f\u060c \u0646\u0647 \u0641\u0642\u0637 \u0628\u0647 \u062f\u0627\u0646\u0634.</p>
                 </div>

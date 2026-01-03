@@ -15,6 +15,14 @@ def load_rules(path: str = "data/job_course_rules_fa.json") -> Dict[str, Any]:
         raise ValueError("job rules must be a dict")
     parsed.setdefault("course_catalog", {})
     parsed.setdefault("job_rules", [])
+    catalog_path = Path("data/course_catalog_fa.json")
+    if catalog_path.exists():
+        try:
+            catalog = json.loads(catalog_path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            catalog = {}
+        if isinstance(catalog, dict) and catalog:
+            parsed["course_catalog"] = catalog
     return parsed
 
 

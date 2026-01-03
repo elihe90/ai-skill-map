@@ -8,7 +8,7 @@ import streamlit as st
 
 from core.job_probability import calculate_job_probability
 from ui.results_v2 import render_results_page_v2
-from ui.theme import card_container
+from ui.theme import card_container, safe_text
 
 
 PRIORITY_ORDER = [
@@ -46,7 +46,9 @@ def render_results_page(course_catalog: Optional[Dict[str, Any]] = None, debug: 
     profile = st.session_state.get("profile", {})
     scores = st.session_state.get("interview_scores", {})
     skill_gaps = st.session_state.get("skill_gaps", [])
-    courses = st.session_state.get("recommended_courses", {"quick": [], "upgrade": [], "avoid": []})
+    courses = st.session_state.get("course_recommendation") or st.session_state.get(
+        "recommended_courses", {"quick": [], "upgrade": [], "avoid": []}
+    )
     jobs = st.session_state.get("job_mapping", {"target": {}, "now": [], "related": [], "next": []})
 
     if not isinstance(courses, dict) or not courses:
@@ -55,6 +57,13 @@ def render_results_page(course_catalog: Optional[Dict[str, Any]] = None, debug: 
         if isinstance(gap, dict):
             courses["quick"] = [str(code) for code in gap.get("recommended_courses", [])]
             courses["avoid"] = [str(code) for code in gap.get("blocked_courses", [])]
+    else:
+        if "recommended_courses" in courses and "quick" not in courses:
+            courses = {
+                "quick": [str(code) for code in courses.get("recommended_courses", [])],
+                "upgrade": [],
+                "avoid": [str(code) for code in courses.get("blocked_courses", [])],
+            }
 
     render_results_page_v2(
         profile=profile if isinstance(profile, dict) else {},
@@ -62,6 +71,7 @@ def render_results_page(course_catalog: Optional[Dict[str, Any]] = None, debug: 
         skill_gaps=skill_gaps,
         courses=courses,
         jobs=jobs if isinstance(jobs, dict) else {},
+        course_catalog=course_catalog if isinstance(course_catalog, dict) else None,
         debug=debug,
     )
     return
@@ -525,7 +535,7 @@ def _render_results_page_legacy(
             title = action.get("title", "\u06af\u0627\u0645 \u067e\u06cc\u0634\u0646\u0647\u0627\u062f\u06cc")
             timeframe = action.get("timeframe", "")
             label = f"{title} ({timeframe})" if timeframe else title
-            with st.expander(label, expanded=index == 0):
+            with st.expander(safe_text(label), expanded=index == 0):
                 for step in action.get("steps", []):
                     st.markdown(f"- {step}")
     else:
@@ -536,7 +546,7 @@ def _render_results_page_legacy(
     if course_plan:
         for index, phase in enumerate(course_plan):
             phase_title = phase.get("phase", "\u0645\u0631\u062d\u0644\u0647")
-            with st.expander(phase_title, expanded=index == 0):
+            with st.expander(safe_text(phase_title), expanded=index == 0):
                 for course in phase.get("courses", []):
                     code = str(course.get("code", ""))
                     title = course.get("title", "")

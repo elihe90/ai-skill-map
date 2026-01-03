@@ -24,7 +24,7 @@ from ui.landing_page import render_landing_page
 from ui.profile_form import render_profile_form
 from ui.results_page import render_results_page
 from ui.skills import render_skill_list
-from ui.theme import apply_theme, render_top_bar
+from ui.theme import apply_global_theme, render_top_bar, safe_text
 
 DATA_PATH = Path(__file__).parent / "data" / "skills.json"
 GAPS_PATH = Path(__file__).parent / "data" / "gaps" / "content_ai_gaps.json"
@@ -58,6 +58,12 @@ def get_skills() -> list[Skill]:
 
 @st.cache_data
 def get_course_catalog() -> dict:
+    catalog_path = Path(__file__).parent / "data" / "course_catalog_fa.json"
+    if catalog_path.exists():
+        try:
+            return json.loads(catalog_path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            pass
     rules = load_rules()
     return rules.get("course_catalog", {})
 
@@ -95,6 +101,25 @@ def _persist_user_snapshot(step: str, extra: Optional[Dict[str, Any]] = None) ->
     if extra:
         payload.update(extra)
     upsert_user_record(str(user_id), payload)
+
+
+def _reset_flow() -> None:
+    st.session_state["current_step"] = "landing"
+    st.session_state["auth_completed"] = False
+    st.session_state["profile_completed"] = False
+    st.session_state["interview_completed"] = False
+    for key in (
+        "profile",
+        "interview_scores",
+        "interview_answers",
+        "interview_v2_answers",
+        "gap",
+        "skill_gaps",
+        "job_mapping",
+        "job_mapping_filtered",
+        "user_feedback",
+    ):
+        st.session_state.pop(key, None)
 
 
 def _step_label(step_key: str) -> str:
@@ -418,7 +443,7 @@ def _render_user_feedback(report: Dict[str, Any]) -> None:
         for action in next_actions:
             title = action.get("title", "????")
             timeframe = action.get("timeframe", "")
-            with st.expander(f"{title} ({timeframe})"):
+            with st.expander(safe_text(f"{title} ({timeframe})")):
                 steps = action.get("steps", [])
                 for step in steps:
                     st.markdown(f"- {step}")
@@ -647,8 +672,8 @@ def _render_steps_panel(current_step: str) -> None:
         return False
 
     with st.container():
-        st.markdown("<div class='sm-steps-anchor'></div>", unsafe_allow_html=True)
-        st.markdown("<div class='sm-steps-title'>\u0645\u0631\u0627\u062d\u0644</div>", unsafe_allow_html=True)
+        st.markdown("<div class='sm-nav-anchor'></div>", unsafe_allow_html=True)
+        st.markdown("<div class='sm-nav-title'>\u0645\u0631\u0627\u062d\u0644</div>", unsafe_allow_html=True)
 
         for step_key, label in STEPS:
             locked = _is_locked(step_key)
@@ -664,15 +689,17 @@ def _render_steps_panel(current_step: str) -> None:
                 if locked
                 else "\u0622\u0645\u0627\u062f\u0647"
             )
+            label_safe = safe_text(label)
+            status_safe = safe_text(status)
             class_name = "current" if current else "locked" if locked else ""
             st.markdown(
-                f"<div class='sm-step {class_name}'><div class='sm-step-label'><span>{icon}</span>{label}</div>"
-                f"<div class='sm-step-status'>{status}</div></div>",
+                f"<div class='sm-step {class_name}'><div class='sm-step-label'><span>{icon}</span>{label_safe}</div>"
+                f"<div class='sm-step-status'>{status_safe}</div></div>",
                 unsafe_allow_html=True,
             )
             if not locked and not current:
                 st.button(
-                    "\u0631\u0641\u062a\u0646",
+                    safe_text("\u0631\u0641\u062a\u0646"),
                     key=f"nav_{step_key}",
                     on_click=_go_to_step,
                     args=(step_key,),
@@ -687,31 +714,21 @@ def _render_steps_panel(current_step: str) -> None:
 
 
 def main() -> None:
-    st.set_page_config(
-        page_title="AI Skill Map",
-        page_icon="AI",
-        layout="wide",
-        initial_sidebar_state="collapsed",
-    )
-    apply_theme()
+    apply_global_theme()
     _init_state()
     _enforce_step()
 
-    collapsed = st.session_state.get("steps_collapsed", False)
-    render_top_bar(_step_label(st.session_state["current_step"]), collapsed)
-    if st.session_state.get("toggle_steps"):
-        st.session_state["steps_collapsed"] = not collapsed
-        st.session_state["toggle_steps"] = False
-        collapsed = st.session_state["steps_collapsed"]
-
     current_step = st.session_state["current_step"]
-    landing_mode = current_step == "landing"
+    reset_clicked = render_top_bar(_step_label(current_step), show_reset=current_step != "landing")
+    if reset_clicked:
+        _reset_flow()
+        st.experimental_rerun()
 
-    if landing_mode or collapsed:
+    if current_step == "landing":
         content_col = st.container()
         steps_col = None
     else:
-        steps_col, content_col = st.columns([0.25, 0.75], gap="large")
+        steps_col, content_col = st.columns([0.22, 0.78], gap="small")
 
     if steps_col is not None:
         with steps_col:
