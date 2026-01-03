@@ -1,0 +1,379 @@
+{
+  "track_id": "content_ai",
+  "track_title_fa": "تولید محتوا با هوش مصنوعی",
+  "track_description_fa": "مسیر مهارتی برای تولید متن، تصویر/ویدئو و اجرای فرآیند تولید محتوا با کمک هوش مصنوعی تا رسیدن به نقش‌های شغلی مرتبط.",
+  "version": "1.0",
+  "jobs": [
+    {
+      "job_id": "ai_content_specialist",
+      "title_fa": "کارشناس تولید محتوا با هوش مصنوعی",
+      "domain": "content",
+      "required_gaps": [
+        "GAP_CONTENT_PUBLISHABLE_OUTPUT",
+        "GAP_PROMPTING_FOR_CONTENT",
+        "GAP_CONTENT_PLANNING",
+        "GAP_PORTFOLIO_WITH_AI"
+      ],
+      "optional_gaps": [
+        "GAP_MULTIMODAL_CONTENT",
+        "GAP_AUDIENCE_FIT_WITH_AI"
+      ]
+    },
+    {
+      "job_id": "ai_tools_operator",
+      "title_fa": "اپراتور ابزارهای هوش مصنوعی",
+      "domain": "content",
+      "required_gaps": [
+        "GAP_CONTENT_PUBLISHABLE_OUTPUT",
+        "GAP_PROMPTING_FOR_CONTENT"
+      ],
+      "optional_gaps": [
+        "GAP_CONTENT_PLANNING",
+        "GAP_PORTFOLIO_WITH_AI"
+      ]
+    },
+    {
+      "job_id": "ai_digital_marketing_assistant",
+      "title_fa": "دستیار دیجیتال مارکتینگ مبتنی بر هوش مصنوعی",
+      "domain": "marketing",
+      "required_gaps": [
+        "GAP_CONTENT_PUBLISHABLE_OUTPUT",
+        "GAP_CONTENT_PLANNING",
+        "GAP_AUDIENCE_FIT_WITH_AI"
+      ],
+      "optional_gaps": [
+        "GAP_PROMPTING_FOR_CONTENT",
+        "GAP_MULTIMODAL_CONTENT",
+        "GAP_PORTFOLIO_WITH_AI"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "gap_id": "GAP_CONTENT_PUBLISHABLE_OUTPUT",
+      "title_fa": "تبدیل خروجی AI به محتوای قابل انتشار",
+      "why_important_fa": "بازار کار خروجی قابل تحویل می‌خواهد، نه صرفاً متن خام یا پاسخ پراکنده. این گپ یعنی توان تبدیل خروجی AI به محتوایی که بتوان منتشر کرد هنوز کامل نیست.",
+      "blocks": [
+        {
+          "block_id": "B1_GOAL_AND_FORMAT",
+          "title_fa": "هدف و قالب محتوا را دقیق مشخص کن",
+          "micro_steps_fa": [
+            "هدف محتوا را انتخاب کن (اطلاع‌رسانی/فروش/تعامل).",
+            "پلتفرم را مشخص کن (اینستاگرام/تلگرام/وب).",
+            "قالب خروجی را تعیین کن (کپشن/مقاله/اسکریپت/سناریو)."
+          ]
+        },
+        {
+          "block_id": "B2_GENERATE_DRAFT",
+          "title_fa": "پیش‌نویس قابل استفاده تولید کن",
+          "micro_steps_fa": [
+            "به AI بگو نقش بگیرد (مثلاً کارشناس محتوا).",
+            "مخاطب و لحن را مشخص کن.",
+            "خروجی را در ۱–۲ نسخه بگیر و بهترین را انتخاب کن."
+          ]
+        },
+        {
+          "block_id": "B3_EDIT_AND_POLISH",
+          "title_fa": "ویرایش و پولیش نهایی انجام بده",
+          "micro_steps_fa": [
+            "تیتر/هوک را بهتر کن.",
+            "جملات اضافه را حذف کن و خوانایی را بالا ببر.",
+            "غلط‌ها و ادعاهای مشکوک را اصلاح کن."
+          ]
+        }
+      ],
+      "milestone_fa": "ساخت یک محتوای متنی قابل انتشار (کپشن/پست/مقاله کوتاه) با حداقل ویرایش دستی.",
+      "evidence_fa": [
+        "یک فایل/متن نهایی قابل انتشار",
+        "اسکرین‌شات یا لینک انتشار (اختیاری)"
+      ],
+      "recommended_courses": [
+        {
+          "code": "2166100024",
+          "title_fa": "تولید محتوای متنی با استفاده از هوش مصنوعی مولد",
+          "priority": "high"
+        },
+        {
+          "code": "3512100030",
+          "title_fa": "بکارگیری مفاهیم و اصول پایه فناوری‌های هوش مصنوعی",
+          "priority": "medium"
+        }
+      ],
+      "boost_jobs": [
+        { "job_id": "ai_tools_operator", "delta_probability": 0.25 },
+        { "job_id": "ai_content_specialist", "delta_probability": 0.2 }
+      ]
+    },
+    {
+      "gap_id": "GAP_PROMPTING_FOR_CONTENT",
+      "title_fa": "نوشتن پرامپت مؤثر برای تولید محتوا",
+      "why_important_fa": "کیفیت خروجی مستقیم به کیفیت دستور بستگی دارد. این گپ یعنی هنوز دستورها دقیق، ساختاریافته و قابل تکرار نیستند.",
+      "blocks": [
+        {
+          "block_id": "B1_PROMPT_STRUCTURE",
+          "title_fa": "ساختار استاندارد پرامپت را یاد بگیر",
+          "micro_steps_fa": [
+            "نقش (Role)، هدف (Goal)، زمینه (Context)، خروجی (Format) را بنویس.",
+            "محدودیت‌ها را مشخص کن (طول، لحن، کلمات ممنوع)."
+          ]
+        },
+        {
+          "block_id": "B2_ITERATE",
+          "title_fa": "پرامپت را با خروجی بهبود بده",
+          "micro_steps_fa": [
+            "اگر خروجی کلی بود، جزئیات اضافه کن.",
+            "اگر خروجی طولانی بود، کوتاه‌سازی مرحله‌ای انجام بده.",
+            "۲ نسخه پرامپت بساز و مقایسه کن."
+          ]
+        },
+        {
+          "block_id": "B3_TEMPLATES",
+          "title_fa": "برای کارهای تکراری قالب پرامپت بساز",
+          "micro_steps_fa": [
+            "یک قالب ثابت برای کپشن بساز.",
+            "یک قالب ثابت برای مقاله کوتاه بساز.",
+            "قالب‌ها را ذخیره کن و دوباره استفاده کن."
+          ]
+        }
+      ],
+      "milestone_fa": "توانایی گرفتن خروجی قابل پیش‌بینی با استفاده از یک قالب پرامپت ثابت و اصلاح مرحله‌ای.",
+      "evidence_fa": [
+        "۲ نمونه پرامپت قالبی (Template)",
+        "۲ خروجی متفاوت از همان قالب"
+      ],
+      "recommended_courses": [
+        {
+          "code": "3512100023",
+          "title_fa": "طراحی و پیاده سازی پرامپت های مؤثر برای سیستمهای هوش مصنوعی",
+          "priority": "high"
+        }
+      ],
+      "boost_jobs": [
+        { "job_id": "ai_tools_operator", "delta_probability": 0.25 },
+        { "job_id": "ai_content_specialist", "delta_probability": 0.2 }
+      ]
+    },
+    {
+      "gap_id": "GAP_CONTENT_PLANNING",
+      "title_fa": "برنامه‌ریزی تولید محتوا با کمک AI",
+      "why_important_fa": "تولید محتوا بدون برنامه باعث بی‌نظمی و ریزش می‌شود. این گپ یعنی هنوز تقویم محتوا و روند تولید منظم شکل نگرفته است.",
+      "blocks": [
+        {
+          "block_id": "B1_IDEAS",
+          "title_fa": "ایده‌پردازی هدفمند انجام بده",
+          "micro_steps_fa": [
+            "موضوع/حوزه اصلی را مشخص کن.",
+            "از AI برای تولید ۲۰ ایده استفاده کن.",
+            "ایده‌ها را به ۳ دسته آموزشی/فروش/تعامل تقسیم کن."
+          ]
+        },
+        {
+          "block_id": "B2_CALENDAR",
+          "title_fa": "تقویم محتوایی بساز",
+          "micro_steps_fa": [
+            "برای ۱۴ روز آینده ۱۰ موضوع انتخاب کن.",
+            "برای هر روز: عنوان، هدف، CTA را مشخص کن.",
+            "زمان تولید و انتشار را واقعی تعیین کن."
+          ]
+        },
+        {
+          "block_id": "B3_WORKFLOW",
+          "title_fa": "جریان کار تولید محتوا را استاندارد کن",
+          "micro_steps_fa": [
+            "مرحله‌ها را بنویس: ایده → پیش‌نویس → ویرایش → انتشار.",
+            "برای هر مرحله یک چک‌لیست کوتاه بساز."
+          ]
+        }
+      ],
+      "milestone_fa": "داشتن یک تقویم محتوایی ۱۴ روزه با موضوع، هدف و CTA برای هر محتوا.",
+      "evidence_fa": [
+        "فایل تقویم محتوا (اکسل/گوگل‌شیت/پی‌دی‌اف)"
+      ],
+      "recommended_courses": [
+        {
+          "code": "1221100027",
+          "title_fa": "مبانی بازاریابی دیجیتال",
+          "priority": "medium"
+        },
+        {
+          "code": "3512100030",
+          "title_fa": "بکارگیری مفاهیم و اصول پایه فناوری‌های هوش مصنوعی",
+          "priority": "low"
+        }
+      ],
+      "boost_jobs": [
+        { "job_id": "ai_content_specialist", "delta_probability": 0.2 },
+        { "job_id": "ai_digital_marketing_assistant", "delta_probability": 0.25 }
+      ]
+    },
+    {
+      "gap_id": "GAP_MULTIMODAL_CONTENT",
+      "title_fa": "تولید محتوای چندرسانه‌ای با AI",
+      "why_important_fa": "درآمد و اثرگذاری محتوا با تصویر/ویدئو بیشتر می‌شود. این گپ یعنی کاربر هنوز فقط متن تولید می‌کند یا خروجی چندرسانه‌ای قابل استفاده ندارد.",
+      "blocks": [
+        {
+          "block_id": "B1_TOOLS",
+          "title_fa": "ابزارهای تصویر/ویدئو را بشناس",
+          "micro_steps_fa": [
+            "یک ابزار تولید تصویر انتخاب کن.",
+            "یک ابزار تولید ویدئو/انیمیشن انتخاب کن.",
+            "محدودیت‌ها (کیفیت، زمان، حق‌کپی) را یادداشت کن."
+          ]
+        },
+        {
+          "block_id": "B2_PROMPT_VISUAL",
+          "title_fa": "پرامپت تصویری را درست بنویس",
+          "micro_steps_fa": [
+            "موضوع، سبک، رنگ، کادر و خروجی را مشخص کن.",
+            "۳ نسخه تصویر تولید کن و بهترین را انتخاب کن."
+          ]
+        },
+        {
+          "block_id": "B3_PLATFORM_FIT",
+          "title_fa": "خروجی را مناسب پلتفرم آماده کن",
+          "micro_steps_fa": [
+            "ابعاد و فرمت مناسب اینستاگرام/استوری را رعایت کن.",
+            "روی تصویر متن کوتاه و خوانا قرار بده (در صورت نیاز)."
+          ]
+        }
+      ],
+      "milestone_fa": "تولید حداقل ۳ محتوای چندرسانه‌ای (تصویر/ویدئو کوتاه/انیمیشن) قابل استفاده برای انتشار.",
+      "evidence_fa": [
+        "۳ فایل خروجی (تصویر/ویدئو) یا لینک آن‌ها"
+      ],
+      "recommended_courses": [
+        {
+          "code": "2166100025",
+          "title_fa": "تولید محتوای چندرسانه‌ای با استفاده از هوش مصنوعی مولد",
+          "priority": "high"
+        },
+        {
+          "code": "2166100026",
+          "title_fa": "ایجاد انیمیشن با هوش مصنوعی مولد",
+          "priority": "medium"
+        },
+        {
+          "code": "2166100027",
+          "title_fa": "بصری‌سازی با استفاده از هوش مصنوعی مولد",
+          "priority": "medium"
+        }
+      ],
+      "boost_jobs": [
+        { "job_id": "ai_content_specialist", "delta_probability": 0.25 }
+      ]
+    },
+    {
+      "gap_id": "GAP_AUDIENCE_FIT_WITH_AI",
+      "title_fa": "شناخت مخاطب و تناسب محتوا با کمک AI",
+      "why_important_fa": "محتوا اگر به مخاطب نخورد، دیده نمی‌شود و نتیجه تجاری ندارد. این گپ یعنی تولید محتوا بدون پرسونای مشخص یا بدون تحلیل بازخورد انجام می‌شود.",
+      "blocks": [
+        {
+          "block_id": "B1_PERSONA",
+          "title_fa": "پرسونا را تعریف کن",
+          "micro_steps_fa": [
+            "یک گروه مخاطب مشخص کن (سن/نیاز/مشکل).",
+            "از AI کمک بگیر تا پرسونا را کامل کند."
+          ]
+        },
+        {
+          "block_id": "B2_TONE_MESSAGE",
+          "title_fa": "لحن و پیام را متناسب کن",
+          "micro_steps_fa": [
+            "برای همان پرسونا ۲ لحن مختلف تولید کن.",
+            "بهترین لحن را انتخاب و ثابت کن."
+          ]
+        },
+        {
+          "block_id": "B3_FEEDBACK",
+          "title_fa": "بازخورد را تحلیل کن",
+          "micro_steps_fa": [
+            "از AI بخواه روی متن تو نقاط ضعف/ابهام را بگوید.",
+            "نسخه اصلاح‌شده را تولید کن."
+          ]
+        }
+      ],
+      "milestone_fa": "ساخت ۲ محتوای متفاوت برای یک پرسونا و انتخاب نسخه مناسب‌تر بر اساس معیارهای ساده (وضوح/جذابیت/CTA).",
+      "evidence_fa": [
+        "پرسونای نوشته‌شده",
+        "۲ نسخه محتوا برای همان پرسونا"
+      ],
+      "recommended_courses": [
+        {
+          "code": "1221100027",
+          "title_fa": "مبانی بازاریابی دیجیتال",
+          "priority": "high"
+        }
+      ],
+      "boost_jobs": [
+        { "job_id": "ai_digital_marketing_assistant", "delta_probability": 0.3 },
+        { "job_id": "ai_content_specialist", "delta_probability": 0.15 }
+      ]
+    },
+    {
+      "gap_id": "GAP_PORTFOLIO_WITH_AI",
+      "title_fa": "ساخت نمونه‌کار واقعی با AI",
+      "why_important_fa": "برای استخدام یا گرفتن پروژه، نمونه‌کار مهم‌تر از مدرک است. این گپ یعنی کاربر خروجی قابل ارائه و مستند ندارد.",
+      "blocks": [
+        {
+          "block_id": "B1_CHOOSE_PROJECT",
+          "title_fa": "یک پروژه ساده واقعی انتخاب کن",
+          "micro_steps_fa": [
+            "یک حوزه انتخاب کن (مثلاً فروشگاه، آموزشگاه، پیج شخصی).",
+            "یک هدف تعریف کن (افزایش تعامل/فروش/آگاهی)."
+          ]
+        },
+        {
+          "block_id": "B2_BUILD_ASSETS",
+          "title_fa": "خروجی‌ها را بساز",
+          "micro_steps_fa": [
+            "حداقل ۵ محتوای متنی بساز.",
+            "حداقل ۲ محتوای تصویری/چندرسانه‌ای بساز (در صورت امکان)."
+          ]
+        },
+        {
+          "block_id": "B3_DOCUMENT",
+          "title_fa": "مستند و قابل ارائه کن",
+          "micro_steps_fa": [
+            "پیش/پس: پرامپت، خروجی، اصلاحات را ثبت کن.",
+            "همه چیز را در یک PDF یا پوشه مرتب کن."
+          ]
+        }
+      ],
+      "milestone_fa": "داشتن حداقل ۱ نمونه‌کار کامل (پکیج محتوا + توضیح فرایند) قابل ارائه به کارفرما/مشتری.",
+      "evidence_fa": [
+        "فایل PDF نمونه‌کار یا لینک پوشه"
+      ],
+      "recommended_courses": [
+        {
+          "code": "2166100024",
+          "title_fa": "تولید محتوای متنی با استفاده از هوش مصنوعی مولد",
+          "priority": "high"
+        },
+        {
+          "code": "2166100025",
+          "title_fa": "تولید محتوای چندرسانه‌ای با استفاده از هوش مصنوعی مولد",
+          "priority": "medium"
+        },
+        {
+          "code": "3512100023",
+          "title_fa": "طراحی و پیاده سازی پرامپت های مؤثر برای سیستمهای هوش مصنوعی",
+          "priority": "medium"
+        }
+      ],
+      "boost_jobs": [
+        { "job_id": "ai_content_specialist", "delta_probability": 0.35 },
+        { "job_id": "ai_digital_marketing_assistant", "delta_probability": 0.2 }
+      ]
+    }
+  ],
+  "scoring_model": {
+    "probability_base_fa": "احتمال شغل بر اساس تعداد گپ‌های حل‌شده و وزن هر گپ محاسبه می‌شود.",
+    "job_probability_formula": "prob = clamp(base + sum(delta_probability for solved gaps), 0, 0.95)",
+    "base_probability_by_readiness_level": {
+      "A": 0.05,
+      "B": 0.15,
+      "C": 0.25
+    },
+    "confidence_hint_fa": "اگر evidence برای milestone ثبت شود، confidence بالاتر می‌رود."
+  }
+}

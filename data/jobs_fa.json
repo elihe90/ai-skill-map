@@ -1,0 +1,249 @@
+﻿[
+  {
+    "job_id": "J-A-01",
+    "title_fa": "کارشناس تولید محتوا با هوش مصنوعی",
+    "level": "A",
+    "domain": "content",
+    "description_fa": "تولید محتوای متنی و چندرسانه ای با کمک ابزارهای هوش مصنوعی.",
+    "typical_tasks_fa": [
+      "ایده پردازی و تولید محتوای کوتاه",
+      "ویرایش و بهینه سازی خروجی",
+      "هماهنگی با نیازهای برند"
+    ],
+    "required_soft_targets": {
+      "execution": 2,
+      "problem_solving": 2,
+      "learning": 2,
+      "planning": 1,
+      "ai_mindset": 2
+    }
+  },
+  {
+    "job_id": "J-A-02",
+    "title_fa": "اپراتور ابزارهای هوش مصنوعی",
+    "level": "A",
+    "domain": "automation",
+    "description_fa": "کار با ابزارهای آماده برای انجام وظایف روزمره و بهبود بهره وری.",
+    "typical_tasks_fa": [
+      "اجرای پرامپت های آماده",
+      "مرتب سازی خروجی ها",
+      "گزارش مشکلات ابزار"
+    ],
+    "required_soft_targets": {
+      "execution": 2,
+      "problem_solving": 2,
+      "learning": 2,
+      "planning": 1,
+      "ai_mindset": 2
+    }
+  },
+  {
+    "job_id": "J-A-03",
+    "title_fa": "دستیار دیجیتال مارکتینگ مبتنی بر هوش مصنوعی",
+    "level": "A",
+    "domain": "content",
+    "description_fa": "پشتیبانی از کمپین های بازاریابی با ابزارهای هوش مصنوعی.",
+    "typical_tasks_fa": [
+      "تولید متن تبلیغاتی",
+      "پیشنهاد ایده برای شبکه های اجتماعی",
+      "پایش بازخورد مخاطبان"
+    ],
+    "required_soft_targets": {
+      "execution": 3,
+      "problem_solving": 2,
+      "learning": 2,
+      "planning": 2,
+      "ai_mindset": 2
+    }
+  },
+  {
+    "job_id": "J-B-01",
+    "title_fa": "کارشناس اتوماسیون و بهره وری با هوش مصنوعی",
+    "level": "B",
+    "domain": "automation",
+    "description_fa": "طراحی جریان های کاری و اتوماسیون با استفاده از ابزارهای AI.",
+    "typical_tasks_fa": [
+      "طراحی گردش کار",
+      "ارزیابی نیازهای تیم",
+      "پایش بهبود بهره وری"
+    ],
+    "required_soft_targets": {
+      "execution": 3,
+      "problem_solving": 3,
+      "learning": 3,
+      "planning": 3,
+      "ai_mindset": 3
+    }
+  },
+  {
+    "job_id": "J-B-02",
+    "title_fa": "کارشناس کاربرد هوش مصنوعی در کسب وکار",
+    "level": "B",
+    "domain": "ai",
+    "description_fa": "پیدا کردن فرصت های استفاده از AI در فرآیندهای کسب وکار.",
+    "typical_tasks_fa": [
+      "تحلیل نیازهای کسب وکار",
+      "تعریف سنجه های موفقیت",
+      "همراستایی با ذی نفعان"
+    ],
+    "required_soft_targets": {
+      "execution": 3,
+      "problem_solving": 3,
+      "learning": 3,
+      "planning": 3,
+      "ai_mindset": 3
+    }
+  },
+  {
+    "job_id": "J-B-03",
+    "title_fa": "دستیار تحلیل داده با هوش مصنوعی",
+    "level": "B",
+    "domain": "data",
+    "description_fa": "کمک به آماده سازی داده و تحلیل های اولیه با ابزارهای AI.",
+    "typical_tasks_fa": [
+      "پاک سازی داده",
+      "ایجاد گزارش های اولیه",
+      "پاسخ به سوالات تحلیلی"
+    ],
+    "required_soft_targets": {
+      "execution": 3,
+      "problem_solving": 3,
+      "learning": 3,
+      "planning": 2,
+      "ai_mindset": 3
+    }
+  },
+  {
+    "job_id": "J-B-04",
+    "title_fa": "کارشناس پیاده سازی سیستم های هوش مصنوعی",
+    "level": "B",
+    "domain": "ai",
+    "description_fa": "پیاده سازی راهکارهای AI و هماهنگی با تیم های فنی.",
+    "typical_tasks_fa": [
+      "جمع آوری نیازها",
+      "همکاری با تیم فنی",
+      "پایش کیفیت خروجی"
+    ],
+    "required_soft_targets": {
+      "execution": 4,
+      "problem_solving": 3,
+      "learning": 3,
+      "planning": 3,
+      "ai_mindset": 3
+    }
+  },
+  {
+    "job_id": "J-C-01",
+    "title_fa": "متخصص یادگیری ماشین",
+    "level": "C",
+    "domain": "machine_learning",
+    "description_fa": "طراحی و توسعه مدل های یادگیری ماشین برای مسائل واقعی.",
+    "typical_tasks_fa": [
+      "ساخت مدل های پیش بینی",
+      "ارزیابی عملکرد مدل",
+      "بهینه سازی داده و ویژگی"
+    ],
+    "required_soft_targets": {
+      "execution": 4,
+      "problem_solving": 4,
+      "learning": 4,
+      "planning": 3,
+      "ai_mindset": 4
+    }
+  },
+  {
+    "job_id": "J-C-02",
+    "title_fa": "متخصص یادگیری عمیق",
+    "level": "C",
+    "domain": "machine_learning",
+    "description_fa": "پیاده سازی شبکه های عمیق برای حل مسائل پیچیده.",
+    "typical_tasks_fa": [
+      "طراحی معماری مدل",
+      "تنظیم ابرپارامترها",
+      "ارزیابی نتایج"
+    ],
+    "required_soft_targets": {
+      "execution": 4,
+      "problem_solving": 4,
+      "learning": 4,
+      "planning": 3,
+      "ai_mindset": 4
+    }
+  },
+  {
+    "job_id": "J-C-03",
+    "title_fa": "متخصص پردازش زبان طبیعی",
+    "level": "C",
+    "domain": "machine_learning",
+    "description_fa": "طراحی راهکارهای NLP برای تحلیل متن و مکالمه.",
+    "typical_tasks_fa": [
+      "تحلیل داده متنی",
+      "ساخت مدل های زبانی",
+      "ارزیابی کیفیت خروجی"
+    ],
+    "required_soft_targets": {
+      "execution": 4,
+      "problem_solving": 4,
+      "learning": 4,
+      "planning": 3,
+      "ai_mindset": 4
+    }
+  },
+  {
+    "job_id": "J-C-04",
+    "title_fa": "متخصص پردازش تصویر",
+    "level": "C",
+    "domain": "machine_learning",
+    "description_fa": "کار روی داده های تصویری و بینایی ماشین.",
+    "typical_tasks_fa": [
+      "آماده سازی داده تصویری",
+      "آموزش مدل بینایی",
+      "ارزیابی دقت"
+    ],
+    "required_soft_targets": {
+      "execution": 4,
+      "problem_solving": 4,
+      "learning": 4,
+      "planning": 3,
+      "ai_mindset": 4
+    }
+  },
+  {
+    "job_id": "J-C-05",
+    "title_fa": "متخصص MLOps",
+    "level": "C",
+    "domain": "machine_learning",
+    "description_fa": "مدیریت چرخه عمر مدل ها و استقرار پایدار.",
+    "typical_tasks_fa": [
+      "استقرار مدل",
+      "پایش عملکرد",
+      "مدیریت نسخه ها"
+    ],
+    "required_soft_targets": {
+      "execution": 4,
+      "problem_solving": 4,
+      "learning": 4,
+      "planning": 4,
+      "ai_mindset": 4
+    }
+  },
+  {
+    "job_id": "J-C-06",
+    "title_fa": "تحلیل گر داده",
+    "level": "C",
+    "domain": "data",
+    "description_fa": "تحلیل داده برای تصمیم گیری و تولید بینش.",
+    "typical_tasks_fa": [
+      "تحلیل داده های ساخت یافته",
+      "گزارش سازی",
+      "ارائه بینش به ذی نفعان"
+    ],
+    "required_soft_targets": {
+      "execution": 3,
+      "problem_solving": 4,
+      "learning": 3,
+      "planning": 3,
+      "ai_mindset": 3
+    }
+  }
+]

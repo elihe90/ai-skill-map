@@ -1,0 +1,355 @@
+﻿{
+  "course_catalog": {
+    "2166100024": {
+      "title_fa": "تولید محتوای متنی با استفاده از هوش مصنوعی مولد",
+      "level_hint": "A",
+      "tags": ["content", "tools"]
+    },
+    "2166100025": {
+      "title_fa": "تولید محتوای چندرسانه ای با استفاده از هوش مصنوعی مولد",
+      "level_hint": "A",
+      "tags": ["content", "tools"]
+    },
+    "2166100026": {
+      "title_fa": "ایجاد انیمیشن با هوش مصنوعی مولد",
+      "level_hint": "A",
+      "tags": ["content", "tools"]
+    },
+    "2166100027": {
+      "title_fa": "بصری سازی با استفاده از هوش مصنوعی مولد",
+      "level_hint": "A",
+      "tags": ["content", "tools"]
+    },
+    "3512100023": {
+      "title_fa": "طراحی و پیاده سازی پرامپت های موثر برای سیستمهای هوش مصنوعی",
+      "level_hint": "A",
+      "tags": ["ai", "tools", "content"]
+    },
+    "3512100030": {
+      "title_fa": "بکارگیری مفاهیم و اصول پایه فناوری های هوش مصنوعی",
+      "level_hint": "A",
+      "tags": ["ai", "foundations"]
+    },
+    "4132300019": {
+      "title_fa": "بکارگیری هوش مصنوعی در سطح مقدماتی",
+      "level_hint": "A",
+      "tags": ["ai", "tools"]
+    },
+    "2421200016": {
+      "title_fa": "بکارگیری برنامه های کاربردی هوش مصنوعی در کسب وکار",
+      "level_hint": "B",
+      "tags": ["ai", "automation"]
+    },
+    "1221100027": {
+      "title_fa": "مبانی بازاریابی دیجیتال",
+      "level_hint": "A",
+      "tags": ["content", "marketing"]
+    },
+    "2511200020": {
+      "title_fa": "طراحی و پیاده سازی سیستم های هوش مصنوعی",
+      "level_hint": "B",
+      "tags": ["ai", "automation"]
+    },
+    "2511200021": {
+      "title_fa": "برنامه نویسی پایتون برای هوش مصنوعی",
+      "level_hint": "B",
+      "tags": ["machine_learning", "data"]
+    },
+    "2511200011": {
+      "title_fa": "برنامه نویسی برای هوش مصنوعی با پایتون و R",
+      "level_hint": "B",
+      "tags": ["machine_learning", "data"]
+    },
+    "2511200022": {
+      "title_fa": "مدل سازی احتمالی و آماری هوش مصنوعی و علم داده",
+      "level_hint": "C",
+      "tags": ["machine_learning", "data"]
+    },
+    "2511200003": {
+      "title_fa": "ارتباطات و همکاری در هوش مصنوعی",
+      "level_hint": "B",
+      "tags": ["ai", "communication"]
+    },
+    "2511200004": {
+      "title_fa": "انجام تحقیق جامع در هوش مصنوعی",
+      "level_hint": "C",
+      "tags": ["ai", "research"]
+    },
+    "2511200005": {
+      "title_fa": "حل مسئله و تفکر تحلیلی در هوش مصنوعی",
+      "level_hint": "B",
+      "tags": ["ai", "problem_solving"]
+    },
+    "2511200007": {
+      "title_fa": "بکارگیری اخلاق و مسئولیت در هوش مصنوعی",
+      "level_hint": "B",
+      "tags": ["ai", "quality"]
+    }
+  },
+  "job_rules": [
+    {
+      "job_id": "J-A-01",
+      "title_fa": "کارشناس تولید محتوا با هوش مصنوعی",
+      "level": "A",
+      "domain": "content",
+      "required_all": ["3512100030"],
+      "required_any": ["2166100024", "2166100025", "2166100026", "2166100027", "3512100023"],
+      "nice_to_have": ["2166100025", "2166100027", "1221100027"],
+      "soft_targets": {
+        "execution": 2,
+        "problem_solving": 2,
+        "learning": 2,
+        "planning": 1,
+        "ai_mindset": 2
+      },
+      "description_fa": "تولید محتوای متنی و چندرسانه ای با کمک ابزارهای هوش مصنوعی.",
+      "typical_tasks_fa": [
+        "ایده پردازی و تولید محتوا",
+        "ویرایش و بهینه سازی خروجی",
+        "هماهنگی با نیازهای برند"
+      ]
+    },
+    {
+      "job_id": "J-A-02",
+      "title_fa": "اپراتور ابزارهای هوش مصنوعی",
+      "level": "A",
+      "domain": "automation",
+      "required_all": ["4132300019"],
+      "required_any": ["3512100030", "3512100023", "2166100024"],
+      "nice_to_have": ["2421200016"],
+      "soft_targets": {
+        "execution": 2,
+        "problem_solving": 2,
+        "learning": 2,
+        "planning": 1,
+        "ai_mindset": 2
+      },
+      "description_fa": "کار با ابزارهای آماده برای انجام وظایف روزمره و افزایش بهره وری.",
+      "typical_tasks_fa": [
+        "اجرای پرامپت های آماده",
+        "مرتب سازی خروجی ها",
+        "گزارش مشکلات ابزار"
+      ]
+    },
+    {
+      "job_id": "J-A-03",
+      "title_fa": "دستیار دیجیتال مارکتینگ مبتنی بر هوش مصنوعی",
+      "level": "A",
+      "domain": "content",
+      "required_all": ["3512100030"],
+      "required_any": ["2166100024", "2166100025", "3512100023", "2421200016", "1221100027"],
+      "nice_to_have": ["2166100027"],
+      "soft_targets": {
+        "execution": 3,
+        "problem_solving": 2,
+        "learning": 2,
+        "planning": 2,
+        "ai_mindset": 2
+      },
+      "description_fa": "پشتیبانی از کمپین های بازاریابی با ابزارهای هوش مصنوعی.",
+      "typical_tasks_fa": [
+        "تولید متن تبلیغاتی",
+        "پیشنهاد ایده برای شبکه های اجتماعی",
+        "پایش بازخورد مخاطبان"
+      ]
+    },
+    {
+      "job_id": "J-B-01",
+      "title_fa": "کارشناس اتوماسیون و بهره وری با هوش مصنوعی",
+      "level": "B",
+      "domain": "automation",
+      "required_all": ["2511200005"],
+      "required_any": ["2511200021", "2511200011", "2511200020"],
+      "nice_to_have": ["2511200003", "2421200016"],
+      "soft_targets": {
+        "execution": 3,
+        "problem_solving": 3,
+        "learning": 3,
+        "planning": 3,
+        "ai_mindset": 3
+      },
+      "description_fa": "طراحی جریان های کاری و اتوماسیون با استفاده از ابزارهای AI.",
+      "typical_tasks_fa": [
+        "طراحی گردش کار",
+        "ارزیابی نیازهای تیم",
+        "پایش بهبود بهره وری"
+      ]
+    },
+    {
+      "job_id": "J-B-02",
+      "title_fa": "کارشناس کاربرد هوش مصنوعی در کسب وکار",
+      "level": "B",
+      "domain": "ai",
+      "required_all": ["2511200003"],
+      "required_any": ["2511200021", "2511200011", "2511200020"],
+      "nice_to_have": ["2421200016", "3512100030"],
+      "soft_targets": {
+        "execution": 3,
+        "problem_solving": 3,
+        "learning": 3,
+        "planning": 3,
+        "ai_mindset": 3
+      },
+      "description_fa": "پیدا کردن فرصت های استفاده از AI در فرآیندهای کسب وکار.",
+      "typical_tasks_fa": [
+        "تحلیل نیازهای کسب وکار",
+        "تعریف سنجه های موفقیت",
+        "همراستایی با ذی نفعان"
+      ]
+    },
+    {
+      "job_id": "J-B-03",
+      "title_fa": "دستیار تحلیل داده با هوش مصنوعی",
+      "level": "B",
+      "domain": "data",
+      "required_all": ["2511200005"],
+      "required_any": ["2511200021", "2511200011"],
+      "nice_to_have": ["2511200022"],
+      "soft_targets": {
+        "execution": 3,
+        "problem_solving": 3,
+        "learning": 3,
+        "planning": 2,
+        "ai_mindset": 3
+      },
+      "description_fa": "کمک به آماده سازی داده و تحلیل های اولیه با ابزارهای AI.",
+      "typical_tasks_fa": [
+        "پاک سازی داده",
+        "ایجاد گزارش های اولیه",
+        "پاسخ به سوالات تحلیلی"
+      ]
+    },
+    {
+      "job_id": "J-B-04",
+      "title_fa": "کارشناس پیاده سازی سیستم های هوش مصنوعی",
+      "level": "B",
+      "domain": "ai",
+      "required_all": ["2511200005"],
+      "required_any": ["2511200020", "2511200021", "2511200011"],
+      "nice_to_have": ["2511200003"],
+      "soft_targets": {
+        "execution": 4,
+        "problem_solving": 3,
+        "learning": 3,
+        "planning": 3,
+        "ai_mindset": 3
+      },
+      "description_fa": "پیاده سازی راهکارهای AI و هماهنگی با تیم های فنی.",
+      "typical_tasks_fa": [
+        "جمع آوری نیازها",
+        "همکاری با تیم فنی",
+        "پایش کیفیت خروجی"
+      ]
+    },
+    {
+      "job_id": "J-C-01",
+      "title_fa": "متخصص یادگیری ماشین",
+      "level": "C",
+      "domain": "machine_learning",
+      "required_all": ["2511200022", "2511200005"],
+      "required_any": ["2511200021", "2511200011"],
+      "nice_to_have": ["2511200004", "2511200020"],
+      "soft_targets": {
+        "execution": 4,
+        "problem_solving": 4,
+        "learning": 4,
+        "planning": 3,
+        "ai_mindset": 4
+      },
+      "description_fa": "طراحی و توسعه مدل های یادگیری ماشین برای مسائل واقعی.",
+      "typical_tasks_fa": [
+        "ساخت مدل های پیش بینی",
+        "ارزیابی عملکرد مدل",
+        "بهینه سازی داده و ویژگی"
+      ]
+    },
+    {
+      "job_id": "J-C-02",
+      "title_fa": "متخصص یادگیری عمیق",
+      "level": "C",
+      "domain": "machine_learning",
+      "required_all": ["2511200022", "2511200005"],
+      "required_any": ["2511200021", "2511200011"],
+      "nice_to_have": ["2511200004", "2511200020"],
+      "soft_targets": {
+        "execution": 4,
+        "problem_solving": 4,
+        "learning": 4,
+        "planning": 3,
+        "ai_mindset": 4
+      },
+      "description_fa": "پیاده سازی شبکه های عمیق برای حل مسائل پیچیده.",
+      "typical_tasks_fa": [
+        "طراحی معماری مدل",
+        "تنظیم ابرپارامترها",
+        "ارزیابی نتایج"
+      ]
+    },
+    {
+      "job_id": "J-C-03",
+      "title_fa": "متخصص پردازش زبان طبیعی",
+      "level": "C",
+      "domain": "machine_learning",
+      "required_all": ["2511200022", "2511200005"],
+      "required_any": ["2511200021", "2511200011"],
+      "nice_to_have": ["2511200004", "2511200020"],
+      "soft_targets": {
+        "execution": 4,
+        "problem_solving": 4,
+        "learning": 4,
+        "planning": 3,
+        "ai_mindset": 4
+      },
+      "description_fa": "طراحی راهکارهای NLP برای تحلیل متن و مکالمه.",
+      "typical_tasks_fa": [
+        "تحلیل داده متنی",
+        "ساخت مدل های زبانی",
+        "ارزیابی کیفیت خروجی"
+      ]
+    },
+    {
+      "job_id": "J-C-04",
+      "title_fa": "متخصص پردازش تصویر",
+      "level": "C",
+      "domain": "machine_learning",
+      "required_all": ["2511200022", "2511200005"],
+      "required_any": ["2511200021", "2511200011"],
+      "nice_to_have": ["2511200004", "2511200020"],
+      "soft_targets": {
+        "execution": 4,
+        "problem_solving": 4,
+        "learning": 4,
+        "planning": 3,
+        "ai_mindset": 4
+      },
+      "description_fa": "کار روی داده های تصویری و بینایی ماشین.",
+      "typical_tasks_fa": [
+        "آماده سازی داده تصویری",
+        "آموزش مدل بینایی",
+        "ارزیابی دقت"
+      ]
+    },
+    {
+      "job_id": "J-C-05",
+      "title_fa": "متخصص MLOps",
+      "level": "C",
+      "domain": "machine_learning",
+      "required_all": ["2511200022", "2511200005"],
+      "required_any": ["2511200021", "2511200011"],
+      "nice_to_have": ["2511200004", "2511200020"],
+      "soft_targets": {
+        "execution": 4,
+        "problem_solving": 4,
+        "learning": 4,
+        "planning": 4,
+        "ai_mindset": 4
+      },
+      "description_fa": "مدیریت چرخه عمر مدل ها و استقرار پایدار.",
+      "typical_tasks_fa": [
+        "استقرار مدل",
+        "پایش عملکرد",
+        "مدیریت نسخه ها"
+      ]
+    }
+  ]
+}

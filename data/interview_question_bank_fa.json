@@ -1,0 +1,146 @@
+﻿[
+  {
+    "id": "Q01",
+    "text_fa": "اگر با یک ابزار دیجیتال جدید روبه رو شوید، چطور یادگیری را شروع می کنید؟",
+    "tags": ["digital", "learning"],
+    "difficulty": "easy",
+    "followups_fa": ["از چه منابعی شروع می کنید؟", "چقدر زمان می گذارید؟"],
+    "weight": 0.9
+  },
+  {
+    "id": "Q02",
+    "text_fa": "برای انجام یک کار فوری با زمان کم، چطور برنامه ریزی می کنید؟",
+    "tags": ["execution", "planning"],
+    "difficulty": "medium",
+    "followups_fa": ["اولویت ها را چگونه می چینید؟", "چه چیزی را حذف می کنید؟"],
+    "weight": 1.1
+  },
+  {
+    "id": "Q03",
+    "text_fa": "وقتی یک کار نصفه مانده تحویل می گیرید، چطور مشکل را حل می کنید؟",
+    "tags": ["problem_solving", "execution"],
+    "difficulty": "medium",
+    "followups_fa": ["اولین اقدام شما چیست؟", "چه کسی را درگیر می کنید؟"],
+    "weight": 1.2
+  },
+  {
+    "id": "Q04",
+    "text_fa": "اگر برداشت شما با هم تیمی متفاوت باشد، چطور هماهنگ می شوید؟",
+    "tags": ["communication", "planning"],
+    "difficulty": "easy",
+    "followups_fa": ["چه سوالی می پرسید؟", "چطور توافق می کنید؟"],
+    "weight": 0.8
+  },
+  {
+    "id": "Q05",
+    "text_fa": "برای اطمینان از کیفیت خروجی قبل از تحویل، چه می کنید؟",
+    "tags": ["quality", "execution"],
+    "difficulty": "medium",
+    "followups_fa": ["چه چیزی را چک می کنید؟", "چه معیاری دارید؟"],
+    "weight": 1.0
+  },
+  {
+    "id": "Q06",
+    "text_fa": "اگر کار با یک ابزار آنلاین برایتان سخت باشد، چطور پیش می روید؟",
+    "tags": ["digital", "communication"],
+    "difficulty": "easy",
+    "followups_fa": ["از چه کسی کمک می گیرید؟", "چه چیزی را امتحان می کنید؟"],
+    "weight": 0.7
+  },
+  {
+    "id": "Q07",
+    "text_fa": "وقتی یک کار جدید را بلد نیستید، مسیر یادگیری را چگونه می چینید؟",
+    "tags": ["learning", "problem_solving"],
+    "difficulty": "medium",
+    "followups_fa": ["چه تمرینی انجام می دهید؟", "چطور پیشرفت را می سنجید؟"],
+    "weight": 1.1
+  },
+  {
+    "id": "Q08",
+    "text_fa": "اگر هم زمان چند درخواست دارید، چطور کارها را اجرا می کنید؟",
+    "tags": ["execution", "communication"],
+    "difficulty": "easy",
+    "followups_fa": ["چطور اطلاع می دهید؟", "چه معیار زمانی دارید؟"],
+    "weight": 0.9
+  },
+  {
+    "id": "Q09",
+    "text_fa": "برای شروع یک کار دیجیتال جدید، چه اطلاعاتی جمع می کنید؟",
+    "tags": ["digital", "planning"],
+    "difficulty": "medium",
+    "followups_fa": ["از کجا تحقیق می کنید؟", "چه ریسکی می بینید؟"],
+    "weight": 1.0
+  },
+  {
+    "id": "Q10",
+    "text_fa": "اگر خروجی کار با انتظار متفاوت باشد، چطور ریشه یابی می کنید؟",
+    "tags": ["quality", "problem_solving"],
+    "difficulty": "medium",
+    "followups_fa": ["چه داده ای جمع می کنید؟", "چه فرضیاتی را بررسی می کنید؟"],
+    "weight": 1.2
+  },
+  {
+    "id": "Q11",
+    "text_fa": "برای یادگیری یک مهارت جدید در کنار کار، چه برنامه ای دارید؟",
+    "tags": ["learning", "execution"],
+    "difficulty": "easy",
+    "followups_fa": ["هفته ای چند ساعت؟", "چطور استمرار دارید؟"],
+    "weight": 0.8
+  },
+  {
+    "id": "Q12",
+    "text_fa": "اگر مسئله مبهم باشد، چطور آن را روشن می کنید؟",
+    "tags": ["communication", "problem_solving"],
+    "difficulty": "medium",
+    "followups_fa": ["چه سوالی می پرسید؟", "چه نمونه ای می سازید؟"],
+    "weight": 1.0
+  },
+  {
+    "id": "Q13",
+    "text_fa": "وقتی باید ابزار جدیدی را سریع یاد بگیرید، چه راهی را انتخاب می کنید؟",
+    "tags": ["digital", "execution"],
+    "difficulty": "easy",
+    "followups_fa": ["از چه منبعی شروع می کنید؟", "چه خروجی می سازید؟"],
+    "weight": 0.9
+  },
+  {
+    "id": "Q14",
+    "text_fa": "برای تحویل یک کار چند مرحله ای، چطور زمان بندی می کنید؟",
+    "tags": ["planning", "execution"],
+    "difficulty": "medium",
+    "followups_fa": ["نقطه های کنترل چیست؟", "چطور تاخیر را مدیریت می کنید؟"],
+    "weight": 1.1
+  },
+  {
+    "id": "Q15",
+    "text_fa": "برای اطمینان از یادگیری درست، چه معیار کیفیتی می گذارید؟",
+    "tags": ["learning", "quality"],
+    "difficulty": "medium",
+    "followups_fa": ["چطور بازخورد می گیرید؟", "چه چیزی را اصلاح می کنید؟"],
+    "weight": 1.0
+  },
+  {
+    "id": "Q16",
+    "text_fa": "اگر در یک ابزار دیجیتال خطا ببینید، چطور مشکل را حل می کنید؟",
+    "tags": ["digital", "problem_solving"],
+    "difficulty": "easy",
+    "followups_fa": ["از چه اطلاعاتی استفاده می کنید؟", "چه اقدام سریع دارید؟"],
+    "weight": 0.9
+  },
+  {
+    "id": "Q17",
+    "text_fa": "وقتی یک کار تیمی به تاخیر افتاده، چطور پیش می برید؟",
+    "tags": ["execution", "communication"],
+    "difficulty": "medium",
+    "followups_fa": ["چطور مسئولیت ها را شفاف می کنید؟", "چه گزارشی می دهید؟"],
+    "weight": 1.0
+  },
+  {
+    "id": "Q18",
+    "text_fa": "اگر باید در یک بازه کوتاه مهارتی بیاموزید، چطور برنامه می چینید؟",
+    "tags": ["learning", "planning"],
+    "difficulty": "easy",
+    "followups_fa": ["چه خروجی می سازید؟", "چطور پیشرفت را دنبال می کنید؟"],
+    "weight": 0.7
+  }
+]

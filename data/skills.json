@@ -1,0 +1,58 @@
+﻿[
+  {
+    "id": "ml-foundations",
+    "name": "مبانی یادگیری ماشین",
+    "category": "یادگیری ماشین",
+    "description": "درک مدل‌های پایه، بایاس-واریانس و ارزیابی مدل.",
+    "level": 2
+  },
+  {
+    "id": "feature-engineering",
+    "name": "مهندسی ویژگی",
+    "category": "یادگیری ماشین",
+    "description": "ساخت، انتخاب و نرمال‌سازی ویژگی‌ها برای مدل‌های بهتر.",
+    "level": 3
+  },
+  {
+    "id": "nlp-core",
+    "name": "پردازش زبان طبیعی",
+    "category": "NLP",
+    "description": "توکن‌سازی، بردارسازی و مدل‌های زبانی پایه.",
+    "level": 3
+  },
+  {
+    "id": "llm-prompting",
+    "name": "مهندسی پرامپت",
+    "category": "LLM",
+    "description": "طراحی پرامپت‌های موثر برای حل مسائل واقعی.",
+    "level": 2
+  },
+  {
+    "id": "retrieval",
+    "name": "بازیابی اطلاعات",
+    "category": "LLM",
+    "description": "جستجو، رتبه‌بندی و ساخت RAG برای پاسخ‌گویی دقیق.",
+    "level": 4
+  },
+  {
+    "id": "data-pipelines",
+    "name": "مهندسی داده",
+    "category": "داده",
+    "description": "جمع‌آوری، پاک‌سازی و پایش کیفیت داده.",
+    "level": 3
+  },
+  {
+    "id": "deployment",
+    "name": "استقرار مدل",
+    "category": "MLOps",
+    "description": "استقرار، مانیتورینگ و نسخه‌بندی مدل‌ها.",
+    "level": 4
+  },
+  {
+    "id": "ethics",
+    "name": "اخلاق و ریسک",
+    "category": "محصول",
+    "description": "ریسک‌های اخلاقی، سوگیری و شفافیت مدل‌ها.",
+    "level": 1
+  }
+]
