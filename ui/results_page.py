@@ -43,6 +43,22 @@ CONFIDENCE_LABELS = {
 
 
 def render_results_page(course_catalog: Optional[Dict[str, Any]] = None, debug: bool = False) -> None:
+    # If MCQ interview results exist, render the dedicated results page.
+    if isinstance(st.session_state.get("interview_result"), dict):
+        import importlib.util
+        import sys
+        from pathlib import Path
+
+        path = Path(__file__).resolve().parents[1] / "pages" / "5_نتایج.py"
+        spec = importlib.util.spec_from_file_location("results_page_mcq", path)
+        if spec and spec.loader:
+            module = importlib.util.module_from_spec(spec)
+            sys.modules["results_page_mcq"] = module
+            spec.loader.exec_module(module)
+            if hasattr(module, "render_results"):
+                module.render_results()
+                return
+
     profile = st.session_state.get("profile", {})
     scores = st.session_state.get("interview_scores", {})
     skill_gaps = st.session_state.get("skill_gaps", [])
@@ -65,7 +81,7 @@ def render_results_page(course_catalog: Optional[Dict[str, Any]] = None, debug: 
                 "avoid": [str(code) for code in courses.get("blocked_courses", [])],
             }
 
-    render_results_page_v2(
+    _render_results_page_legacy(
         profile=profile if isinstance(profile, dict) else {},
         scores=scores if isinstance(scores, dict) else {},
         skill_gaps=skill_gaps,
@@ -496,12 +512,17 @@ def _render_job_cards(
 
 
 def _render_results_page_legacy(
-    gap: Dict[str, Any],
-    feedback: Dict[str, Any],
-    job_mapping: Dict[str, Any],
-    course_catalog: Dict[str, Any],
-    debug: bool,
+    gap: Optional[Dict[str, Any]] = None,
+    feedback: Optional[Dict[str, Any]] = None,
+    job_mapping: Optional[Dict[str, Any]] = None,
+    course_catalog: Optional[Dict[str, Any]] = None,
+    debug: bool = False,
+    **_: Any,
 ) -> None:
+    gap = gap if isinstance(gap, dict) else {}
+    feedback = feedback if isinstance(feedback, dict) else {}
+    job_mapping = job_mapping if isinstance(job_mapping, dict) else {}
+    course_catalog = course_catalog if isinstance(course_catalog, dict) else {}
     st.markdown("## \u0646\u062a\u0627\u06cc\u062c \u062a\u062d\u0644\u06cc\u0644 \u0645\u0633\u06cc\u0631 \u0634\u063a\u0644\u06cc")
     summary = feedback.get("summary_fa", "") if isinstance(feedback, dict) else ""
     if summary:

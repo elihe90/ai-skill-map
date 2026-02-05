@@ -1,0 +1,423 @@
+{
+  "schemaVersion": "ir.ai.jobs.v1",
+  "country": "IR",
+  "language": "fa",
+  "currency": "IRR",
+  "updatedAt": "2026-02-01",
+  "jobs": [
+    {
+      "jobKey": "ai_generalist_business_operator",
+      "titleFa": "اپراتور ابزارهای هوش مصنوعی در کسب‌وکار",
+      "category": "general",
+      "seniority": "entry",
+      "marketStatus": "high_demand",
+      "descriptionFa": "کار با ابزارهای هوش مصنوعی برای انجام وظایف روزمره کسب‌وکار مثل تولید متن، خلاصه‌سازی، تهیه گزارش، ایده‌پردازی و کمک به تصمیم‌سازی.",
+      "typicalEmployersIr": ["کسب‌وکارهای کوچک", "استارتاپ‌ها", "شرکت‌های خدماتی", "فریلنسر"],
+      "workModes": ["onsite", "hybrid", "remote"],
+      "timeToEmployability": "2-6_weeks",
+      "coreTasksFa": [
+        "تولید و بازنویسی متن‌های کاری (ایمیل/گزارش/پیشنهاد)",
+        "خلاصه‌سازی فایل و جلسه و تبدیل به خروجی اجرایی",
+        "طراحی پرامپت‌های ساده برای گرفتن خروجی بهتر",
+        "کمک به تحلیل ساده داده‌ها و ساخت گزارش"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.20,
+        "prompting": 0.35,
+        "office_tools": 0.25,
+        "data_basics": 0.10,
+        "programming": 0.00,
+        "english": 0.10,
+        "portfolio": 0.00,
+        "soft_skills": 0.00
+      },
+      "mustHaveSkillsFa": ["Prompt نویسی پایه", "سواد دیجیتال", "کار با ابزارهای Office"],
+      "niceToHaveSkillsFa": ["آشنایی با Excel پیشرفته", "آشنایی با ابزارهای اتوماسیون"],
+      "portfolioIdeasFa": [
+        "۳ نمونه گزارش مدیریتی تولید شده با AI (قبل/بعد)",
+        "۵ پرامپت آماده برای وظایف کاری (گزارش، ایمیل، تحلیل)"
+      ]
+    },
+    {
+      "jobKey": "ai_content_creator",
+      "titleFa": "تولیدکننده محتوا با هوش مصنوعی",
+      "category": "general",
+      "seniority": "entry",
+      "marketStatus": "high_demand",
+      "descriptionFa": "تولید محتوای متنی/تصویری/ویدئویی با کمک AI برای شبکه‌های اجتماعی و وب‌سایت، با تمرکز بر بازار ایران.",
+      "typicalEmployersIr": ["آژانس‌های دیجیتال مارکتینگ", "فروشگاه‌های آنلاین", "پیج‌های اینستاگرام", "فریلنسر"],
+      "workModes": ["hybrid", "remote", "onsite"],
+      "timeToEmployability": "2-8_weeks",
+      "coreTasksFa": [
+        "تولید کپشن، سناریو و تقویم محتوایی",
+        "بازنویسی و بهینه‌سازی برای سئو",
+        "تولید تصویر/اسلاید/پوستر با ابزارهای AI",
+        "ارزیابی عملکرد محتوا و بهبود"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "prompting": 0.30,
+        "content_marketing": 0.35,
+        "design_tools": 0.15,
+        "english": 0.05,
+        "portfolio": 0.05,
+        "programming": 0.00,
+        "soft_skills": 0.00
+      },
+      "mustHaveSkillsFa": ["اصول تولید محتوا", "Prompt نویسی کاربردی", "شناخت مخاطب ایرانی"],
+      "niceToHaveSkillsFa": ["SEO مقدماتی", "Canva/ابزارهای طراحی", "ویرایش ویدئو مقدماتی"],
+      "portfolioIdeasFa": [
+        "۱۰ پست/کپشن برای یک حوزه مشخص با AI",
+        "یک تقویم محتوایی ۱۴ روزه + خروجی‌ها"
+      ]
+    },
+    {
+      "jobKey": "ai_digital_marketing_specialist",
+      "titleFa": "کارشناس دیجیتال مارکتینگ مبتنی بر AI",
+      "category": "general",
+      "seniority": "entry",
+      "marketStatus": "high_demand",
+      "descriptionFa": "استفاده از AI برای تحقیق بازار، تولید کمپین، بهینه‌سازی تبلیغات و افزایش نرخ تبدیل در کانال‌های دیجیتال.",
+      "typicalEmployersIr": ["کسب‌وکارهای آنلاین", "آژانس‌های تبلیغاتی", "فروشگاه‌های اینترنتی"],
+      "workModes": ["onsite", "hybrid", "remote"],
+      "timeToEmployability": "1-3_months",
+      "coreTasksFa": [
+        "تحقیق بازار و پرسونای مخاطب با کمک AI",
+        "تولید متن تبلیغاتی و A/B ایده‌ها",
+        "طراحی قیف فروش و بهینه‌سازی تبدیل",
+        "گزارش‌دهی عملکرد کمپین‌ها"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "prompting": 0.20,
+        "content_marketing": 0.25,
+        "analytics": 0.20,
+        "office_tools": 0.10,
+        "english": 0.10,
+        "portfolio": 0.05,
+        "programming": 0.00
+      },
+      "mustHaveSkillsFa": ["دیجیتال مارکتینگ مقدماتی", "تحلیل KPI", "Prompt نویسی برای تبلیغات"],
+      "niceToHaveSkillsFa": ["Google Analytics/Search Console", "SEO", "CRM"],
+      "portfolioIdeasFa": [
+        "یک کمپین نمونه: پرسونـا + پیام + KPI + گزارش",
+        "۳ نمونه متن تبلیغاتی با A/B ایده‌ها"
+      ]
+    },
+    {
+      "jobKey": "ai_business_assistant",
+      "titleFa": "دستیار هوشمند مدیران و شرکت‌ها",
+      "category": "general",
+      "seniority": "entry",
+      "marketStatus": "growing",
+      "descriptionFa": "کمک به مدیر/تیم در خلاصه‌سازی، ساخت گزارش، تدوین دستورجلسه، تولید اسناد و پیگیری کارها با ابزارهای AI.",
+      "typicalEmployersIr": ["شرکت‌های خدماتی", "دفاتر مشاوره", "مدیران کسب‌وکار"],
+      "workModes": ["onsite", "hybrid", "remote"],
+      "timeToEmployability": "2-8_weeks",
+      "coreTasksFa": [
+        "خلاصه‌سازی جلسات و تبدیل به Task",
+        "تهیه گزارش‌های مدیریتی و پرزنت",
+        "تهیه مستندات و نامه‌های رسمی",
+        "کمک به برنامه‌ریزی و پیگیری"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "prompting": 0.30,
+        "office_tools": 0.30,
+        "communication": 0.20,
+        "english": 0.05,
+        "portfolio": 0.05,
+        "programming": 0.00
+      },
+      "mustHaveSkillsFa": ["نگارش اداری", "Office", "Prompt نویسی برای اسناد"],
+      "niceToHaveSkillsFa": ["مدیریت پروژه مقدماتی", "آشنایی با اکسل/پاورپوینت حرفه‌ای"],
+      "portfolioIdeasFa": [
+        "نمونه صورتجلسه + تبدیل به برنامه اقدام",
+        "نمونه گزارش مدیریتی ۲ صفحه‌ای"
+      ]
+    },
+    {
+      "jobKey": "ai_crm_sales_specialist",
+      "titleFa": "کارشناس فروش و CRM با AI",
+      "category": "general",
+      "seniority": "entry",
+      "marketStatus": "growing",
+      "descriptionFa": "استفاده از AI برای تولید پیام‌های فروش، پاسخ‌گویی نیمه‌خودکار، تحلیل سرنخ‌ها و پیگیری مشتریان.",
+      "typicalEmployersIr": ["فروشگاه‌های آنلاین", "شرکت‌های خدماتی", "B2B کوچک و متوسط"],
+      "workModes": ["onsite", "hybrid"],
+      "timeToEmployability": "1-3_months",
+      "coreTasksFa": [
+        "تولید پیام‌های فروش و پاسخ‌گویی استاندارد",
+        "دسته‌بندی سرنخ‌ها و تحلیل تماس‌ها/چت‌ها",
+        "ثبت و پیگیری در CRM",
+        "گزارش فروش و نرخ تبدیل"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "prompting": 0.20,
+        "sales_crm": 0.35,
+        "communication": 0.20,
+        "office_tools": 0.10,
+        "english": 0.05
+      },
+      "mustHaveSkillsFa": ["فروش/ارتباط با مشتری", "کار با CRM یا اکسل", "Prompt برای سناریوهای فروش"],
+      "niceToHaveSkillsFa": ["گزارش‌گیری فروش", "فانل و KPI"],
+      "portfolioIdeasFa": [
+        "۱۰ سناریوی پاسخ‌گویی مشتری (FAQ) با AI",
+        "یک فایل پیگیری فروش + داشبورد ساده"
+      ]
+    },
+    {
+      "jobKey": "ai_reporting_analyst",
+      "titleFa": "اپراتور گزارش‌سازی و تحلیل با AI",
+      "category": "general",
+      "seniority": "entry",
+      "marketStatus": "growing",
+      "descriptionFa": "ساخت گزارش‌های عملیاتی/مدیریتی با ترکیب Excel/Power BI و کمک AI برای تحلیل سریع و تولید بینش.",
+      "typicalEmployersIr": ["شرکت‌های پخش", "فروشگاه‌های زنجیره‌ای", "واحدهای مالی/فروش", "سازمان‌ها"],
+      "workModes": ["onsite", "hybrid"],
+      "timeToEmployability": "1-3_months",
+      "coreTasksFa": [
+        "تمیزسازی داده و ساخت گزارش",
+        "تحلیل فروش و عملکرد",
+        "ساخت داشبورد ساده",
+        "تولید توضیح مدیریتی از یافته‌ها با AI"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "prompting": 0.10,
+        "office_tools": 0.25,
+        "data_basics": 0.25,
+        "bi_tools": 0.25,
+        "english": 0.05
+      },
+      "mustHaveSkillsFa": ["Excel متوسط", "مفاهیم داده", "گزارش‌نویسی"],
+      "niceToHaveSkillsFa": ["Power BI", "SQL مقدماتی"],
+      "portfolioIdeasFa": [
+        "یک داشبورد فروش (نمونه داده) + گزارش مدیریتی",
+        "تحلیل ۵ شاخص کلیدی (KPI) با خروجی AI"
+      ]
+    },
+    {
+      "jobKey": "ai_bi_analyst_powerbi",
+      "titleFa": "تحلیل‌گر داده فروش با Power BI و AI",
+      "category": "semi_specialized",
+      "seniority": "junior",
+      "marketStatus": "high_demand",
+      "descriptionFa": "تحلیل داده‌های فروش/عملیات با Power BI و استفاده از AI برای سرعت‌دهی به تحلیل، تولید روایت داده و پیشنهاد اقدام.",
+      "typicalEmployersIr": ["شرکت‌های فروش و پخش", "فروشگاه‌های اینترنتی", "سازمان‌های متوسط"],
+      "workModes": ["onsite", "hybrid"],
+      "timeToEmployability": "2-4_months",
+      "coreTasksFa": [
+        "مدلسازی داده و ساخت داشبورد",
+        "تعریف KPI و گزارش دوره‌ای",
+        "تحلیل روند و ریشه‌یابی",
+        "تولید insight و پیشنهاد اقدام با کمک AI"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "prompting": 0.05,
+        "data_basics": 0.20,
+        "bi_tools": 0.35,
+        "sql": 0.20,
+        "english": 0.05,
+        "portfolio": 0.05
+      },
+      "mustHaveSkillsFa": ["Power BI", "SQL مقدماتی", "KPI"],
+      "niceToHaveSkillsFa": ["DAX مقدماتی", "مدل‌سازی داده"],
+      "portfolioIdeasFa": [
+        "داشبورد فروش + دیتامدل + KPI",
+        "یک گزارش insight ماهانه با توصیه اجرایی"
+      ]
+    },
+    {
+      "jobKey": "prompt_engineer_practical",
+      "titleFa": "Prompt Engineer کاربردی (کسب‌وکار محور)",
+      "category": "semi_specialized",
+      "seniority": "junior",
+      "marketStatus": "growing",
+      "descriptionFa": "طراحی و استانداردسازی پرامپت‌ها و قالب‌ها برای تولید محتوا، پشتیبانی، تحلیل و اتوماسیون در سازمان‌ها و تیم‌ها.",
+      "typicalEmployersIr": ["استارتاپ‌ها", "آژانس‌ها", "تیم‌های محتوا/پشتیبانی", "فریلنسر"],
+      "workModes": ["remote", "hybrid"],
+      "timeToEmployability": "1-3_months",
+      "coreTasksFa": [
+        "طراحی پرامپت‌های استاندارد و قابل تکرار",
+        "بهینه‌سازی کیفیت خروجی با ارزیابی",
+        "ساخت کتابخانه پرامپت سازمانی",
+        "مستندسازی و آموزش تیم"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.20,
+        "prompting": 0.45,
+        "communication": 0.15,
+        "process_thinking": 0.10,
+        "english": 0.05,
+        "portfolio": 0.05
+      },
+      "mustHaveSkillsFa": ["Prompting پیشرفته", "تفکر فرایندی", "مستندسازی"],
+      "niceToHaveSkillsFa": ["آشنایی با ارزیابی خروجی LLM", "آشنایی با RAG مقدماتی"],
+      "portfolioIdeasFa": [
+        "کتابخانه ۳۰ پرامپت برای یک تیم مشخص",
+        "نمونه قبل/بعد از بهینه‌سازی خروجی در ۵ سناریو"
+      ]
+    },
+    {
+      "jobKey": "ai_process_automation_specialist",
+      "titleFa": "کارشناس اتوماسیون فرآیند با AI",
+      "category": "semi_specialized",
+      "seniority": "junior",
+      "marketStatus": "growing",
+      "descriptionFa": "خودکارسازی کارهای تکراری با ترکیب ابزارهای اتوماسیون و AI، اتصال فرم‌ها/CRM/پیام‌رسان‌ها و تولید خروجی‌های متنی/گزارشی.",
+      "typicalEmployersIr": ["کسب‌وکارهای آنلاین", "تیم‌های عملیات", "استارتاپ‌ها", "فریلنسر"],
+      "workModes": ["remote", "hybrid"],
+      "timeToEmployability": "2-4_months",
+      "coreTasksFa": [
+        "طراحی فلوهای اتوماسیون (جمع‌آوری/پردازش/خروجی)",
+        "اتصال سرویس‌ها با Webhook/API",
+        "استفاده از AI برای طبقه‌بندی/تولید متن",
+        "مانیتورینگ و رفع خطا"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "prompting": 0.10,
+        "automation_tools": 0.35,
+        "api_basics": 0.20,
+        "process_thinking": 0.20,
+        "english": 0.05
+      },
+      "mustHaveSkillsFa": ["تفکر فرایندی", "ابزارهای اتوماسیون", "API مقدماتی"],
+      "niceToHaveSkillsFa": ["SQL مقدماتی", "Git مقدماتی"],
+      "portfolioIdeasFa": [
+        "یک فلو اتوماسیون: دریافت درخواست → طبقه‌بندی AI → پاسخ",
+        "اتصال فرم به گزارش‌ساز و ارسال خروجی"
+      ]
+    },
+    {
+      "jobKey": "ai_customer_support_chatbot_builder",
+      "titleFa": "توسعه‌دهنده چت‌بات پاسخ‌گوی مشتری (کسب‌وکار)",
+      "category": "semi_specialized",
+      "seniority": "junior",
+      "marketStatus": "growing",
+      "descriptionFa": "ساخت چت‌بات برای پاسخ‌گویی به سوالات مشتری، جمع‌آوری سرنخ و پشتیبانی با استفاده از API مدل‌ها و داده‌های داخلی.",
+      "typicalEmployersIr": ["فروشگاه‌های آنلاین", "شرکت‌های خدماتی", "استارتاپ‌ها"],
+      "workModes": ["remote", "hybrid"],
+      "timeToEmployability": "3-6_months",
+      "coreTasksFa": [
+        "طراحی مکالمه و سناریوهای پاسخ‌گویی",
+        "اتصال به API مدل‌ها و کانال‌ها",
+        "ساخت پایگاه دانش (FAQ/Docs)",
+        "ارزیابی کیفیت پاسخ‌ها و بهبود"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.15,
+        "prompting": 0.15,
+        "programming": 0.25,
+        "api_basics": 0.20,
+        "data_basics": 0.15,
+        "english": 0.05,
+        "portfolio": 0.05
+      },
+      "mustHaveSkillsFa": ["برنامه‌نویسی مقدماتی", "API", "طراحی سناریوی مکالمه"],
+      "niceToHaveSkillsFa": ["RAG مقدماتی", "Vector DB مقدماتی"],
+      "portfolioIdeasFa": [
+        "یک چت‌بات FAQ برای یک حوزه مشخص با دیتا",
+        "گزارش ارزیابی کیفیت پاسخ (۱۰ تست)"
+      ]
+    },
+    {
+      "jobKey": "llm_app_developer_junior",
+      "titleFa": "توسعه‌دهنده اپلیکیشن‌های LLM (جونیور)",
+      "category": "specialized",
+      "seniority": "junior",
+      "marketStatus": "limited_but_real",
+      "descriptionFa": "توسعه سرویس‌ها و اپلیکیشن‌های مبتنی بر LLM شامل چت‌بات، RAG، ابزارهای داخلی سازمان و یکپارچه‌سازی با سیستم‌ها.",
+      "typicalEmployersIr": ["استارتاپ‌های AI", "شرکت‌های نرم‌افزاری", "تیم‌های محصول"],
+      "workModes": ["hybrid", "remote"],
+      "timeToEmployability": "6-12_months",
+      "coreTasksFa": [
+        "ساخت سرویس LLM با API",
+        "پیاده‌سازی RAG مقدماتی",
+        "ارزیابی پاسخ و بهبود کیفیت",
+        "مستندسازی و تست"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.15,
+        "prompting": 0.10,
+        "programming": 0.35,
+        "api_basics": 0.15,
+        "data_basics": 0.10,
+        "english": 0.10,
+        "portfolio": 0.05
+      },
+      "mustHaveSkillsFa": ["Python یا JavaScript", "API", "مفاهیم LLM/RAG مقدماتی"],
+      "niceToHaveSkillsFa": ["Git", "Docker مقدماتی", "Vector DB"],
+      "portfolioIdeasFa": [
+        "یک اپ RAG ساده روی مجموعه اسناد فارسی",
+        "یک چت‌بات کسب‌وکار با گزارش ارزیابی"
+      ]
+    },
+    {
+      "jobKey": "ml_engineer_junior",
+      "titleFa": "مهندس یادگیری ماشین (جونیور)",
+      "category": "specialized",
+      "seniority": "junior",
+      "marketStatus": "limited_but_real",
+      "descriptionFa": "طراحی، آموزش و ارزیابی مدل‌های ML برای مسائل سازمانی (پیش‌بینی، طبقه‌بندی، کشف تقلب، توصیه‌گر) با تمرکز بر پیاده‌سازی عملی.",
+      "typicalEmployersIr": ["فین‌تک‌ها", "شرکت‌های بزرگ", "پروژه‌های داده محور"],
+      "workModes": ["onsite", "hybrid"],
+      "timeToEmployability": "6-12_months",
+      "coreTasksFa": [
+        "ساخت pipeline داده و ویژگی‌ها",
+        "آموزش و ارزیابی مدل",
+        "بهبود عملکرد و جلوگیری از overfitting",
+        "تحویل مدل و مستندسازی"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.15,
+        "programming": 0.30,
+        "math_stats": 0.15,
+        "ml_basics": 0.25,
+        "data_basics": 0.10,
+        "english": 0.05
+      },
+      "mustHaveSkillsFa": ["Python", "ML پایه", "آمار مقدماتی", "کار با داده"],
+      "niceToHaveSkillsFa": ["SQL متوسط", "Git", "MLflow مقدماتی"],
+      "portfolioIdeasFa": [
+        "یک پروژه پیش‌بینی (مثلاً churn/فروش) با گزارش کامل",
+        "Notebook تمیز + ارزیابی مدل + مستندسازی"
+      ]
+    },
+    {
+      "jobKey": "data_scientist_junior",
+      "titleFa": "دانشمند داده (جونیور)",
+      "category": "specialized",
+      "seniority": "junior",
+      "marketStatus": "competitive",
+      "descriptionFa": "تحلیل عمیق داده، طراحی آزمایش، ساخت مدل‌های آماری/یادگیری ماشین و ارائه بینش برای تصمیم‌سازی در سازمان‌ها.",
+      "typicalEmployersIr": ["شرکت‌های بزرگ", "فین‌تک‌ها", "مارکت‌پلیس‌ها"],
+      "workModes": ["onsite", "hybrid"],
+      "timeToEmployability": "6-12_months",
+      "coreTasksFa": [
+        "تحلیل اکتشافی و کشف الگو",
+        "تعریف متریک‌ها و آزمایش‌ها",
+        "مدل‌سازی و ارائه insight",
+        "داستان‌گویی داده (Data Storytelling)"
+      ],
+      "skillWeights": {
+        "ai_literacy": 0.10,
+        "programming": 0.20,
+        "math_stats": 0.20,
+        "data_basics": 0.20,
+        "sql": 0.20,
+        "english": 0.05,
+        "portfolio": 0.05
+      },
+      "mustHaveSkillsFa": ["SQL", "آمار", "تحلیل داده", "ارائه گزارش"],
+      "niceToHaveSkillsFa": ["A/B Testing", "Power BI/Tableau"],
+      "portfolioIdeasFa": [
+        "یک تحلیل کسب‌وکاری کامل با insight و توصیه",
+        "پروژه A/B یا تحلیل قیف (نمونه داده)"
+      ]
+    }
+  ]
+}

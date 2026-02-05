@@ -26,6 +26,12 @@ def load_users(path: Path = DEFAULT_PATH) -> Dict[str, Any]:
     return data if isinstance(data, dict) else {}
 
 
+def get_user_record(user_id: str, path: Path = DEFAULT_PATH) -> Dict[str, Any]:
+    users = load_users(path)
+    record = users.get(user_id, {})
+    return record if isinstance(record, dict) else {}
+
+
 def save_users(users: Dict[str, Any], path: Path = DEFAULT_PATH) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = json.dumps(users, ensure_ascii=True, indent=2)

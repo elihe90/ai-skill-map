@@ -79,11 +79,17 @@ def _init_state() -> None:
     st.session_state.setdefault("current_step", STEPS[0][0])
     if "profile" in st.session_state and "profile_completed" not in st.session_state:
         st.session_state["profile_completed"] = True
-    if isinstance(st.session_state.get("user"), dict):
-        st.session_state["auth_completed"] = True
+    if "interview_result" in st.session_state and "interview_completed" not in st.session_state:
+        st.session_state["interview_completed"] = True
     st.session_state.setdefault("auth_completed", False)
+    st.session_state.setdefault("registered", isinstance(st.session_state.get("user"), dict))
+    st.session_state.setdefault("logged_in", False)
+    if st.session_state.get("logged_in", False):
+        st.session_state["auth_completed"] = True
+    st.session_state.setdefault("auth_mode", "register")
     st.session_state.setdefault("profile_completed", False)
     st.session_state.setdefault("interview_completed", False)
+    st.session_state.setdefault("steps_collapsed", False)
 
 
 def _persist_user_snapshot(step: str, extra: Optional[Dict[str, Any]] = None) -> None:
@@ -106,6 +112,9 @@ def _persist_user_snapshot(step: str, extra: Optional[Dict[str, Any]] = None) ->
 def _reset_flow() -> None:
     st.session_state["current_step"] = "landing"
     st.session_state["auth_completed"] = False
+    st.session_state["registered"] = False
+    st.session_state["logged_in"] = False
+    st.session_state["auth_mode"] = "register"
     st.session_state["profile_completed"] = False
     st.session_state["interview_completed"] = False
     for key in (
@@ -113,11 +122,43 @@ def _reset_flow() -> None:
         "interview_scores",
         "interview_answers",
         "interview_v2_answers",
+        "mcq_answers",
+        "mcq_index",
+        "mcq_questions",
         "gap",
         "skill_gaps",
         "job_mapping",
         "job_mapping_filtered",
         "user_feedback",
+    ):
+        st.session_state.pop(key, None)
+
+
+def _logout() -> None:
+    st.session_state["logged_in"] = False
+    st.session_state["auth_completed"] = False
+    st.session_state["current_step"] = "auth"
+    st.session_state["auth_mode"] = "login"
+    st.session_state["profile_completed"] = False
+    st.session_state["interview_completed"] = False
+    for key in (
+        "user",
+        "user_id",
+        "profile",
+        "interview_scores",
+        "interview_result",
+        "interview_answers",
+        "interview_v2_answers",
+        "mcq_answers",
+        "mcq_index",
+        "mcq_questions",
+        "gap",
+        "skill_gaps",
+        "job_mapping",
+        "job_mapping_filtered",
+        "user_feedback",
+        "course_recommendation",
+        "recommended_jobs",
     ):
         st.session_state.pop(key, None)
 
@@ -235,11 +276,88 @@ def _get_blocked_codes() -> List[str]:
 def _get_route_answers() -> Dict[str, str]:
     answers = st.session_state.get("interview_v2_answers")
     if not isinstance(answers, dict):
-        return {}
+        answers = {}
     goal = answers.get("ROUTE_Q5", {}).get("choice") if isinstance(answers.get("ROUTE_Q5"), dict) else ""
     weekly_time = answers.get("ROUTE_Q6", {}).get("choice") if isinstance(answers.get("ROUTE_Q6"), dict) else ""
     preference = answers.get("ROUTE_Q7", {}).get("choice") if isinstance(answers.get("ROUTE_Q7"), dict) else ""
-    return {"goal": str(goal or ""), "weekly_time": str(weekly_time or ""), "preference": str(preference or "")}
+    if goal or weekly_time or preference:
+        return {"goal": str(goal or ""), "weekly_time": str(weekly_time or ""), "preference": str(preference or "")}
+
+    profile = st.session_state.get("profile") if isinstance(st.session_state.get("profile"), dict) else {}
+    goal_type = str(profile.get("goal_type") or "")
+    goal_map = {
+        "quick_income": "درآمد سریع",
+        "career_upgrade": "ارتقای شغلی",
+        "technical_switch": "تغییر مسیر فنی",
+    }
+    goal = goal_map.get(goal_type, "")
+
+    weekly_hours = profile.get("weekly_time_budget_hours")
+    weekly_time = ""
+    try:
+        hours = int(weekly_hours)
+        if hours <= 2:
+            weekly_time = "۱–۲ ساعت"
+        elif hours <= 5:
+            weekly_time = "۳–۵ ساعت"
+        elif hours <= 10:
+            weekly_time = "۶–۱۰ ساعت"
+        else:
+            weekly_time = "بیشتر از ۱۰ ساعت"
+    except (TypeError, ValueError):
+        weekly_time = ""
+
+    preference = str(profile.get("preference") or "")
+    return {"goal": goal, "weekly_time": weekly_time, "preference": preference}
+
+
+def _build_interview_result(profile: Dict[str, Any], scores: Dict[str, Any]) -> Dict[str, Any]:
+    goal_map = {
+        "quick_income": "درآمد سریع",
+        "career_upgrade": "3 ماه",
+        "technical_switch": "6 ماه",
+    }
+    goal_horizon = goal_map.get(str(profile.get("goal_type") or ""), "12 ماه")
+    time_per_week = 0
+    try:
+        time_per_week = int(profile.get("weekly_time_budget_hours") or 0)
+    except (TypeError, ValueError):
+        time_per_week = 0
+
+    def _scale(value: Any) -> int:
+        try:
+            return max(0, min(100, int(value) * 20))
+        except (TypeError, ValueError):
+            return 0
+
+    interview_scores = {
+        "ai_literacy": _scale(scores.get("ai_mindset")),
+        "prompting": _scale(scores.get("execution")),
+        "office_tools": _scale(scores.get("planning")),
+        "data_basics": _scale(scores.get("problem_solving")),
+        "bi_tools": 0,
+        "sql": 0,
+        "programming": _scale(scores.get("learning")),
+        "english": 0,
+        "soft_skills": _scale(scores.get("planning")),
+        "content_marketing": 0,
+        "automation_tools": _scale(scores.get("execution")),
+        "api_basics": _scale(scores.get("learning")),
+        "process_thinking": _scale(scores.get("problem_solving")),
+        "sales_crm": 0,
+        "analytics": _scale(scores.get("problem_solving")),
+        "design_tools": 0,
+        "math_stats": _scale(scores.get("learning")),
+        "ml_basics": _scale(scores.get("learning")),
+        "communication": _scale(scores.get("planning")),
+        "portfolio": _scale(scores.get("execution")),
+    }
+
+    return {
+        "timePerWeek": time_per_week,
+        "goalHorizon": goal_horizon,
+        "scores": interview_scores,
+    }
 
 
 def _flatten_interview_answers(answers: Dict[str, Any]) -> str:
@@ -362,16 +480,20 @@ def _course_titles(codes: Iterable[str], course_catalog: Dict[str, Any]) -> List
 
 
 def _render_job_mapping(decision: Dict[str, Any], interview_scores: Dict[str, Any], show_level: bool = True) -> None:
-    st.subheader("????? ????")
+    st.subheader("نقشه مهارت")
     if show_level:
-        st.caption(f"??? ?????? ???: {decision['label_fa']} (??? {decision['training_level']})")
+        st.caption(
+            f"سطح فعلی شما: {decision['label_fa']} (سطح {decision['training_level']})"
+        )
 
     gap = st.session_state.get("gap")
     if not isinstance(gap, dict) or not gap.get("recommended_courses"):
         gap = _ensure_gap(decision, interview_scores)
 
     if not gap.get("recommended_courses"):
-        st.info("??? ?? ???? ??? ???????? ??? ???? ???? ????? ???? ?? ???? ????? ??? ??? ????? ???? ?? ????.")
+        st.info(
+            "هنوز دوره‌های پیشنهادی ثبت نشده است. برای ادامه، پروفایل و مصاحبه را کامل کنید."
+        )
 
     results = map_jobs_from_gap(gap, top_k=3)
     st.session_state["job_mapping"] = results
@@ -385,29 +507,31 @@ def _render_job_mapping(decision: Dict[str, Any], interview_scores: Dict[str, An
         types = {type(code).__name__ for code in recommended}
         st.caption(f"code types: {', '.join(sorted(types)) if types else 'empty'}")
 
-    st.markdown("### ????? ???? ???????")
+    st.markdown("### شغل‌های قابل دسترس")
     reachable = results.get("reachable_jobs", [])
     if not reachable:
-        st.info("???? ??? ???? ??????? ???? ???.")
+        st.info("هنوز شغل قابل دسترس نمایش داده نشده است.")
     else:
         for job in reachable:
-            st.markdown(f"**{job['title_fa']}** ? ?????? {job['match_score']}/100")
+            st.markdown(f"**{job['title_fa']}** ? امتیاز {job['match_score']}/100")
             for reason in job.get("why_fa", []):
                 st.markdown(f"- {reason}")
             missing = job.get("missing_courses", [])
             if missing:
-                st.caption(f"???? ??? ????? ???? ?????: {', '.join(_course_titles(missing, course_catalog))}")
+                st.caption(
+                    f"دوره‌های لازم برای تکمیل: {', '.join(_course_titles(missing, course_catalog))}"
+                )
             next_courses = job.get("next_courses_to_unlock", [])
             if next_courses:
                 st.caption(
-                    f"???? ??? ??? ???? ??: {', '.join(_course_titles(next_courses, course_catalog))}"
+                    f"برای باز شدن سریع‌تر: {', '.join(_course_titles(next_courses, course_catalog))}"
                 )
             st.divider()
 
-    st.markdown("### ????? ??? ????")
+    st.markdown("### شغل‌های سطح بعدی")
     next_level = results.get("next_level_jobs", [])
     if not next_level:
-        st.info("???? ??????? ??? ???? ??? ???? ???.")
+        st.info("فعلاً شغل سطح بعدی نمایش داده نشده است.")
     else:
         for job in next_level:
             st.markdown(f"**{job['title_fa']}**")
@@ -415,33 +539,35 @@ def _render_job_mapping(decision: Dict[str, Any], interview_scores: Dict[str, An
                 st.markdown(f"- {reason}")
             unlock = job.get("unlock_with", [])
             if unlock:
-                st.caption(f"???? ??? ????????: {', '.join(_course_titles(unlock, course_catalog))}")
+                st.caption(
+                    f"برای باز شدن: {', '.join(_course_titles(unlock, course_catalog))}"
+                )
             st.divider()
 
 
 def _render_user_feedback(report: Dict[str, Any]) -> None:
-    st.markdown("### ??????? ?????")
+    st.markdown("### گزارش تحلیلی")
     summary = report.get("summary_fa", "")
     if summary:
         st.write(summary)
 
     strengths = report.get("strengths_fa", [])
     if strengths:
-        st.markdown("**????? ????:**")
+        st.markdown("**نقاط قوت:**")
         for item in strengths:
             st.markdown(f"- {item}")
 
     gaps = report.get("gaps_fa", [])
     if gaps:
-        st.markdown("**????? ?????:**")
+        st.markdown("**اولویت‌های یادگیری:**")
         for item in gaps:
             st.markdown(f"- {item}")
 
     next_actions = report.get("next_actions_fa", [])
     if next_actions:
-        st.markdown("**????? ??????:**")
+        st.markdown("**گام‌های بعدی:**")
         for action in next_actions:
-            title = action.get("title", "????")
+            title = action.get("title", "گام")
             timeframe = action.get("timeframe", "")
             with st.expander(safe_text(f"{title} ({timeframe})")):
                 steps = action.get("steps", [])
@@ -450,7 +576,7 @@ def _render_user_feedback(report: Dict[str, Any]) -> None:
 
     course_plan = report.get("course_plan_fa", [])
     if course_plan:
-        st.markdown("**????? ???????:**")
+        st.markdown("**مسیر آموزشی:**")
         for phase in course_plan:
             phase_title = phase.get("phase", "")
             st.markdown(f"**{phase_title}**")
@@ -464,18 +590,18 @@ def _render_user_feedback(report: Dict[str, Any]) -> None:
     if isinstance(job_path, dict):
         target = job_path.get("target_job", {})
         if target:
-            st.markdown("**???? ????:**")
+            st.markdown("**شغل هدف:**")
             st.markdown(f"- {target.get('title', '')}: {target.get('why_fit', '')}")
 
         reachable = job_path.get("reachable_now", [])
         if reachable:
-            st.markdown("**????? ???? ????:**")
+            st.markdown("**شغل‌های قابل دسترس:**")
             for item in reachable:
                 st.markdown(f"- {item.get('title', '')}: {item.get('why', '')}")
 
         next_level = job_path.get("next_level", [])
         if next_level:
-            st.markdown("**????? ??? ????:**")
+            st.markdown("**شغل‌های سطح بعدی:**")
             for item in next_level:
                 unlock = item.get("unlock_with", [])
                 unlock_text = ", ".join(unlock) if unlock else ""
@@ -483,17 +609,22 @@ def _render_user_feedback(report: Dict[str, Any]) -> None:
 
     warnings = report.get("warnings_fa", [])
     if warnings:
-        st.markdown("**?????:**")
+        st.markdown("**هشدارها:**")
         for warning in warnings:
             st.markdown(f"- {warning}")
 
-    st.button("?????? ?????", disabled=True)
-
-
+    st.button("دانلود گزارش", disabled=True)
 def _render_interview_results() -> None:
+    if not st.session_state.get("interview_completed"):
+        st.warning("ابتدا مصاحبه را تکمیل کنید تا نتایج نمایش داده شود.")
+        if st.button("رفتن به مصاحبه"):
+            st.session_state["current_step"] = "interview"
+            st.rerun()
+        return
+
     scores = st.session_state.get("interview_scores")
     if not isinstance(scores, dict) or not scores:
-        st.info("???? ?? ????? ?????? ?????? ?? ????? ????.")
+        st.info("هنوز امتیاز مصاحبه ثبت نشده است. لطفاً مصاحبه را کامل کنید.")
         return
 
     profile = st.session_state.get("profile") or {}
@@ -524,9 +655,7 @@ def _render_interview_results() -> None:
     interview_payload = st.session_state.get("interview_v2_payload", {})
     interview_questions: List[Dict[str, Any]] = []
     if isinstance(interview_payload, dict):
-        interview_questions = list(interview_payload.get("core", [])) + list(
-            interview_payload.get("routing", [])
-        )
+        interview_questions = list(interview_payload.get("questions", []))
     interview_answers = st.session_state.get("interview_v2_answers", {})
 
     gap_catalog = st.session_state.get("gap_catalog")
@@ -561,17 +690,88 @@ def _render_interview_results() -> None:
             "job_mapping": filtered_jm,
             "user_feedback": report,
             "skill_gaps": st.session_state.get("skill_gaps"),
+            "interview_result": st.session_state.get("interview_result"),
         },
     )
     render_results_page(course_catalog=course_catalog, debug=False)
 
 
+def _handle_interview_mcq_finish(payload: Dict[str, Any]) -> None:
+    level = str(payload.get("level") or "beginner")
+    scores = payload.get("scores", {}) if isinstance(payload.get("scores"), dict) else {}
+
+    profile = st.session_state.get("profile") or {}
+    goal_map = {
+        "quick_income": "درآمد سریع",
+        "career_upgrade": "3 ماه",
+        "technical_switch": "6 ماه",
+    }
+    goal_horizon = str(payload.get("goalHorizon") or "").strip()
+    if not goal_horizon:
+        goal_horizon = goal_map.get(str(profile.get("goal_type") or ""), "12 ماه")
+    try:
+        time_per_week = int(payload.get("timePerWeek") or 0)
+    except (TypeError, ValueError):
+        time_per_week = 0
+    if not time_per_week:
+        try:
+            time_per_week = int(profile.get("weekly_time_budget_hours") or 0)
+        except (TypeError, ValueError):
+            time_per_week = 0
+
+    st.session_state["interview_result"] = {
+        "level": level,
+        "scores": scores,
+        "timePerWeek": time_per_week,
+        "goalHorizon": goal_horizon,
+    }
+    st.session_state["interview_completed"] = True
+
+    # minimal interview_scores for existing pipelines
+    st.session_state["interview_scores"] = {
+        "execution": int(scores.get("prompting", 0) / 20),
+        "problem_solving": int(scores.get("data_basics", 0) / 20),
+        "learning": int(scores.get("ai_literacy", 0) / 20),
+        "planning": int(scores.get("office_tools", 0) / 20),
+        "ai_mindset": int(scores.get("ai_literacy", 0) / 20),
+    }
+
+    _persist_user_snapshot(
+        "interview",
+        {
+            "profile": st.session_state.get("profile"),
+            "interview_answers": st.session_state.get("mcq_answers", {}),
+            "interview_scores": st.session_state.get("interview_scores"),
+            "interview_result": st.session_state.get("interview_result"),
+            "interview_completed": True,
+        },
+    )
+
 def _handle_interview_v2_finish(answers: Dict[str, Any], core_questions: List[Dict[str, Any]]) -> None:
-    with st.spinner("?? ??? ????? ???? ??..."):
+    with st.spinner("\u062f\u0631 \u062d\u0627\u0644 \u062a\u062d\u0644\u06cc\u0644 \u067e\u0627\u0633\u062e\u200c\u0647\u0627..."):
         scoring = score_core_answers(answers, core_questions)
 
     scores = scoring.get("scores", {})
+    # If scoring failed or returned zeros, boost with answer length to reflect effort
+    answers_text = _flatten_interview_answers(answers if isinstance(answers, dict) else {})
+    total_words = len(str(answers_text).split())
+    length_base = 0
+    if total_words >= 80:
+        length_base = 2
+    if total_words >= 140:
+        length_base = 3
+    if total_words >= 220:
+        length_base = 4
+    if total_words >= 320:
+        length_base = 5
+    if scores and all(int(scores.get(k, 0)) == 0 for k in scores.keys()):
+        for k in scores.keys():
+            scores[k] = max(int(scores.get(k, 0)), length_base)
     st.session_state["interview_scores"] = scores
+    st.session_state["interview_result"] = _build_interview_result(
+        st.session_state.get("profile") or {},
+        scores,
+    )
     st.session_state["interview_feedback"] = {
         "rationales_fa": scoring.get("rationales_fa", {}),
         "improvements_fa": scoring.get("improvements_fa", []),
@@ -643,16 +843,19 @@ def _handle_interview_v2_finish(answers: Dict[str, Any], core_questions: List[Di
             "profile": profile,
             "interview_answers": answers,
             "interview_scores": gap.get("interview_scores", {}),
+            "interview_result": st.session_state.get("interview_result"),
+            "course_recommendation": st.session_state.get("course_recommendation"),
             "gap": gap,
             "skill_gaps": st.session_state.get("skill_gaps"),
             "job_mapping": st.session_state.get("job_mapping"),
+            "interview_completed": True,
         },
     )
     st.success("\u0645\u0635\u0627\u062d\u0628\u0647 \u062a\u06a9\u0645\u06cc\u0644 \u0634\u062f.")
 
 
 def _render_interview() -> None:
-    render_interview_v2(on_finish=_handle_interview_v2_finish)
+    render_interview_v2(on_finish=_handle_interview_mcq_finish)
     if st.session_state.get("interview_completed"):
         st.button("\u0631\u0641\u062a\u0646 \u0628\u0647 \u0646\u062a\u0627\u06cc\u062c", on_click=_go_to_step, args=("results",))
 
@@ -673,7 +876,29 @@ def _render_steps_panel(current_step: str) -> None:
 
     with st.container():
         st.markdown("<div class='sm-nav-anchor'></div>", unsafe_allow_html=True)
+        collapsed = bool(st.session_state.get("steps_collapsed", False))
+        toggle_label = "\u00bb" if collapsed else "\u00ab"
         st.markdown("<div class='sm-nav-title'>\u0645\u0631\u0627\u062d\u0644</div>", unsafe_allow_html=True)
+        if st.button(safe_text(toggle_label), key="toggle_steps"):
+            st.session_state["steps_collapsed"] = not collapsed
+            if hasattr(st, "rerun"):
+                st.rerun()
+            else:
+                st.experimental_rerun()
+
+        if collapsed:
+            st.markdown("<div class='sm-small'>\u0646\u0645\u0627\u06cc\u0634 \u062e\u0644\u0627\u0635\u0647</div>", unsafe_allow_html=True)
+            for step_key, label in STEPS:
+                locked = _is_locked(step_key)
+                done = _completed(step_key)
+                current = step_key == current_step
+                icon = "\u2713" if done else ("\u25cf" if current else "\u25cb")
+                class_name = "current" if current else "locked" if locked else ""
+                st.markdown(
+                    f"<div class='sm-step {class_name}'><div class='sm-step-label'><span>{icon}</span></div></div>",
+                    unsafe_allow_html=True,
+                )
+            return
 
         for step_key, label in STEPS:
             locked = _is_locked(step_key)
@@ -719,16 +944,39 @@ def main() -> None:
     _enforce_step()
 
     current_step = st.session_state["current_step"]
-    reset_clicked = render_top_bar(_step_label(current_step), show_reset=current_step != "landing")
+    user_label = ""
+    if st.session_state.get("logged_in", False):
+        user = st.session_state.get("user", {})
+        if isinstance(user, dict) and user.get("name"):
+            user_label = str(user.get("name"))
+    reset_clicked, logout_clicked = render_top_bar(
+        _step_label(current_step),
+        show_reset=current_step != "landing",
+        user_label=user_label,
+        show_logout=bool(st.session_state.get("logged_in", False)),
+    )
     if reset_clicked:
         _reset_flow()
-        st.experimental_rerun()
+        if hasattr(st, "rerun"):
+            st.rerun()
+        else:
+            st.experimental_rerun()
+    if logout_clicked:
+        _logout()
+        if hasattr(st, "rerun"):
+            st.rerun()
+        else:
+            st.experimental_rerun()
 
     if current_step == "landing":
         content_col = st.container()
         steps_col = None
     else:
-        steps_col, content_col = st.columns([0.22, 0.78], gap="small")
+        collapsed = bool(st.session_state.get("steps_collapsed", False))
+        if collapsed:
+            steps_col, content_col = st.columns([0.06, 0.94], gap="small")
+        else:
+            steps_col, content_col = st.columns([0.22, 0.78], gap="small")
 
     if steps_col is not None:
         with steps_col:
@@ -742,7 +990,6 @@ def main() -> None:
         if current_step == "auth":
             submitted = render_auth_page()
             if submitted:
-                st.session_state["auth_completed"] = True
                 _go_to_step("profile")
             return
 

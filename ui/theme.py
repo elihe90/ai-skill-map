@@ -1,13 +1,14 @@
 from __future__ import annotations
 
+import base64
 from contextlib import contextmanager
+from pathlib import Path
 from typing import Optional
 
 import streamlit as st
 
 
-THEME_CSS = """
-<style>
+THEME_CSS_BODY = """
 :root {
     --sm-primary: #2563EB;
     --sm-primary-soft: #DBEAFE;
@@ -54,6 +55,30 @@ p, li, div, span {
 .sm-topbar-anchor,
 .sm-nav-anchor {
     display: none;
+}
+.sm-brand-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--sm-text);
+    letter-spacing: 0.2px;
+}
+.sm-brand-subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #D97706 !important;
+    margin-top: 2px;
+}
+.sm-login-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #DCFCE7;
+    color: #166534;
+    border: 1px solid #BBF7D0;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
 }
 div[data-testid="stVerticalBlock"]:has(> .sm-card-anchor) {
     background: var(--sm-card);
@@ -138,14 +163,16 @@ div[data-testid="stVerticalBlock"]:has(> .sm-badge-muted) {
     border-color: #E5E7EB;
 }
 button[data-testid="baseButton-primary"] {
-    background: var(--sm-primary);
+    background: #F59E0B;
     color: #FFFFFF;
     border: none;
     border-radius: 10px;
     padding: 8px 14px;
+    font-size: 18px;
+    font-weight: 800;
 }
 button[data-testid="baseButton-primary"]:hover {
-    background: #1D4ED8;
+    background: #D97706;
     color: #FFFFFF;
 }
 .stButton > button {
@@ -196,7 +223,6 @@ button[data-testid="collapsedControl"] {
         font-size: 11px;
     }
 }
-</style>
 """
 
 
@@ -208,7 +234,8 @@ def safe_text(value: Optional[str]) -> str:
 
 def apply_global_theme() -> None:
     st.set_page_config(page_title="AI Skill Map", layout="wide", initial_sidebar_state="collapsed")
-    st.markdown(THEME_CSS, unsafe_allow_html=True)
+    css = f"<style>\n{_font_face_css()}\n{THEME_CSS_BODY}\n</style>"
+    st.markdown(css, unsafe_allow_html=True)
 
 
 @contextmanager
@@ -218,18 +245,63 @@ def card_container():
         yield
 
 
-def render_top_bar(stage_label: str = "", show_reset: bool = True) -> bool:
+def render_top_bar(
+    stage_label: str = "",
+    show_reset: bool = True,
+    user_label: str = "",
+    show_logout: bool = False,
+) -> tuple[bool, bool]:
     reset_clicked = False
+    logout_clicked = False
     with st.container():
         st.markdown("<div class='sm-topbar-anchor'></div>", unsafe_allow_html=True)
         col_left, col_mid, col_right = st.columns([3, 2, 1])
         with col_left:
-            st.write("\u0639\u06cc\u0627\u0631 \u0645\u0647\u0627\u0631\u062a\u06cc | AI Skill Map")
-            st.caption("\u0645\u0633\u06cc\u0631 \u06cc\u0627\u062f\u06af\u06cc\u0631\u06cc \u0648 \u0645\u0647\u0627\u0631\u062a\u200c\u0647\u0627\u06cc \u06a9\u0644\u06cc\u062f\u06cc \u0628\u0631\u0627\u06cc \u0646\u0642\u0634\u200c\u0647\u0627\u06cc AI")
+            st.markdown(
+                "<div class='sm-brand-title'>\u0639\u06cc\u0627\u0631 \u0645\u0647\u0627\u0631\u062a\u06cc | AI Skill Map</div>",
+                unsafe_allow_html=True,
+            )
+            st.markdown(
+                "<div class='sm-brand-subtitle'>\u0645\u0633\u06cc\u0631 \u06cc\u0627\u062f\u06af\u06cc\u0631\u06cc \u0648 \u0645\u0647\u0627\u0631\u062a\u200c\u0647\u0627\u06cc \u06a9\u0644\u06cc\u062f\u06cc \u0628\u0631\u0627\u06cc \u0646\u0642\u0634\u200c\u0647\u0627\u06cc AI</div>",
+                unsafe_allow_html=True,
+            )
         with col_mid:
             if stage_label:
                 st.caption(f"\u0645\u0631\u062d\u0644\u0647: {safe_text(stage_label)}")
+            if user_label:
+                st.markdown(
+                    f"<div class='sm-login-chip'>\u0648\u0631\u0648\u062f: {safe_text(user_label)}</div>",
+                    unsafe_allow_html=True,
+                )
         with col_right:
             if show_reset:
                 reset_clicked = st.button(safe_text("\u0634\u0631\u0648\u0639 \u0627\u0632 \u0627\u0628\u062a\u062f\u0627"))
-    return reset_clicked
+            if show_logout:
+                logout_clicked = st.button(safe_text("\u062e\u0631\u0648\u062c"))
+    return reset_clicked, logout_clicked
+
+
+def _font_face_css() -> str:
+    base_dir = Path(__file__).resolve().parents[1]
+    fonts_dir = base_dir / "assets" / "fonts"
+
+    def _font_rule(filename: str, weight: int) -> str:
+        path = fonts_dir / filename
+        if not path.exists():
+            return ""
+        data = base64.b64encode(path.read_bytes()).decode("ascii")
+        return (
+            "@font-face {\n"
+            "  font-family: 'Vazirmatn';\n"
+            f"  src: url(data:font/ttf;base64,{data}) format('truetype');\n"
+            f"  font-weight: {weight};\n"
+            "  font-style: normal;\n"
+            "  font-display: swap;\n"
+            "}\n"
+        )
+
+    return (
+        _font_rule("Vazirmatn-Regular.ttf", 400)
+        + _font_rule("Vazirmatn-Bold.ttf", 700)
+        + _font_rule("Vazirmatn-Black.ttf", 900)
+    )

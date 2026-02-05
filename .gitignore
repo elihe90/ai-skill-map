@@ -1,0 +1,10 @@
+﻿@"
+.env
+.streamlit/secrets.toml
+data/users.json
+__pycache__/
+*.pyc
+.pytest_cache/
+vazirmatn-v33.003.zip
+vazirmatn-v33.003/
+"@ | Out-File -Encoding utf8 .gitignore

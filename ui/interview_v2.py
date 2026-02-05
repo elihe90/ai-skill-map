@@ -1,162 +1,136 @@
-from typing import Any, Callable, Dict, List
-
+﻿from typing import Any, Dict, List
+import json
+from pathlib import Path
 import streamlit as st
 
-from core.interview_v2_question_generator import clear_question_cache, load_interview_questions
+
+def _load_question_bank() -> Dict[str, Any]:
+    path = Path(__file__).resolve().parents[1] / "data" / "question_bank.v1.1.json"
+    if not path.exists():
+        return {"skills": [], "questions": [], "interviewPlans": {}}
+    raw = path.read_text(encoding="utf-8-sig")
+    data = json.loads(raw)
+    return data if isinstance(data, dict) else {"skills": [], "questions": [], "interviewPlans": {}}
 
 
-def load_interview_questions_v2(profile: Dict[str, Any], force_refresh: bool) -> Dict[str, Any]:
-    """Load interview v2 questions, with LLM-generated core questions."""
-    return load_interview_questions(profile=profile, force_refresh=force_refresh)
+def _build_question_index(questions: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    index: Dict[str, Dict[str, Any]] = {}
+    for q in questions:
+        if isinstance(q, dict) and q.get("id"):
+            index[str(q["id"])] = q
+    return index
 
 
-def render_interview_v2(
-    on_finish: Callable[[Dict[str, Any], List[Dict[str, Any]]], None]
-) -> None:
-    """Render Interview v2 step-by-step UI and call on_finish when complete."""
-    profile = st.session_state.get("profile") if isinstance(st.session_state.get("profile"), dict) else {}
-    force_refresh = st.button("بازسازی سوالات با LLM", key="regen_questions")
-    if force_refresh:
-        clear_question_cache(profile)
-        st.session_state.pop("interview_v2_answers", None)
-        st.session_state["interview_v2_index"] = 0
-    payload = load_interview_questions_v2(profile, force_refresh=False)
-    st.session_state["interview_v2_payload"] = payload
-    core_questions = payload.get("core", [])
-    routing_questions = payload.get("routing", [])
-    meta = payload.get("meta", {})
-    ordered: List[Dict[str, Any]] = list(core_questions) + list(routing_questions)
+def _build_questions(level: str, bank: Dict[str, Any]) -> List[Dict[str, Any]]:
+    plans = bank.get("interviewPlans", {}) if isinstance(bank.get("interviewPlans"), dict) else {}
+    plan = plans.get(level, {}) if isinstance(plans.get(level), dict) else {}
+    question_ids = plan.get("questionIds")
+    if not isinstance(question_ids, list) or not question_ids:
+        return []
+    questions = list(bank.get("questions", [])) if isinstance(bank.get("questions"), list) else []
+    index = _build_question_index(questions)
+    selected: List[Dict[str, Any]] = []
+    for qid in question_ids:
+        q = index.get(str(qid))
+        if q:
+            selected.append(q)
+    return selected
 
-    if not ordered:
-        st.error("سوالات مصاحبه پیدا نشد.")
+
+def _avg_scores(answers: Dict[str, Any]) -> Dict[str, int]:
+    accum: Dict[str, List[int]] = {}
+    for item in answers.values():
+        if not isinstance(item, dict):
+            continue
+        skill = item.get("skillTarget")
+        score = item.get("score")
+        if skill is None or score is None:
+            continue
+        accum.setdefault(skill, []).append(int(score))
+    output: Dict[str, int] = {}
+    for k, vals in accum.items():
+        output[k] = int(round(sum(vals) / max(1, len(vals))))
+    return output
+
+
+def render_interview_v2(on_finish) -> None:
+    st.subheader("مصاحبه چندگزینه‌ای")
+    level = st.radio(
+        "سطح مصاحبه را انتخاب کنید",
+        ["beginner", "intermediate", "advanced"],
+        index=0,
+        key="mcq_level",
+    )
+    goal_horizon = st.selectbox("هدف زمانی شما", ["درآمد سریع", "3 ماه", "6 ماه", "12 ماه"], index=1)
+    time_per_week = st.number_input("زمان آزاد هفتگی (ساعت)", min_value=1, max_value=40, value=6, step=1)
+
+    bank = _load_question_bank()
+    if not bank.get("interviewPlans"):
+        st.error("ساختار interviewPlans در فایل سوالات پیدا نشد.")
         return
 
-    st.session_state.setdefault("interview_v2_index", 0)
-    st.session_state.setdefault("interview_v2_answers", {})
-    answers: Dict[str, Any] = st.session_state["interview_v2_answers"]
+    questions = _build_questions(level, bank)
+    if st.session_state.get("mcq_questions_count") != len(questions):
+        st.session_state["mcq_index"] = 0
+        st.session_state["mcq_answers"] = {}
+    st.session_state["mcq_questions"] = questions
+    st.session_state["mcq_questions_count"] = len(questions)
 
-    index = st.session_state["interview_v2_index"]
-    index = min(max(index, 0), len(ordered) - 1)
-    question = ordered[index]
-    qid = str(question.get("id"))
+    st.session_state.setdefault("mcq_index", 0)
+    st.session_state.setdefault("mcq_answers", {})
+    idx = int(st.session_state.get("mcq_index", 0))
+    if questions:
+        idx = min(max(idx, 0), len(questions) - 1)
 
-    st.subheader("مصاحبه هوش مصنوعی")
-    if isinstance(meta, dict):
-        core_source = str(meta.get("core_source", "fallback"))
-        routing_source = str(meta.get("routing_source", "fallback"))
-        if core_source.startswith("llm") and routing_source.startswith("llm"):
-            st.caption("LLM فعال است (سوالات پویا)")
-        else:
-            st.caption("LLM غیرفعال است یا پاسخ نامعتبر بود؛ سوالات ثابت نمایش داده می‌شوند.")
-        error = meta.get("llm_error")
-        if error:
-            st.caption(f"LLM خطا: {error}")
-    st.caption(f"سوال {index + 1} از {len(ordered)}")
-    st.markdown(question.get("text_fa", ""))
-
-    answer_type = question.get("answer_type")
-    hint = question.get("hint_fa")
-    if hint:
-        st.caption(hint)
-
-    current = answers.get(qid, {})
-    updated = _render_answer_widget(qid, answer_type, question, current)
-    answers[qid] = updated
-    st.session_state["interview_v2_answers"] = answers
-
-    col_back, col_next, col_finish = st.columns(3)
-    with col_back:
-        go_back = st.button("قبلی", disabled=index == 0)
-    with col_next:
-        go_next = st.button("بعدی", disabled=index >= len(ordered) - 1)
-    with col_finish:
-        finish = st.button("پایان مصاحبه", disabled=index < len(ordered) - 1)
-
-    if go_back:
-        st.session_state["interview_v2_index"] = max(0, index - 1)
+    if not questions:
+        st.error("برای این سطح سوالی تعریف نشده است.")
         return
 
-    if go_next:
-        ok, message = _validate_answer(question, updated)
-        if not ok:
-            st.error(message)
+    q = questions[idx]
+    qid = q.get("id", str(idx))
+    skill = q.get("skillTarget")
+    v = q.get("versions", {}).get(level, {})
+    qtext = v.get("questionFa", "")
+    options = v.get("options", [])
+
+    st.caption(f"سوال {idx + 1} از {len(questions)}")
+    st.markdown(qtext)
+
+    labels = [f"{opt.get('key')}) {opt.get('text')}" for opt in options]
+    current = st.session_state["mcq_answers"].get(qid, {})
+    current_key = current.get("key")
+    default_index = 0
+    if current_key:
+        for i, opt in enumerate(options):
+            if opt.get("key") == current_key:
+                default_index = i
+                break
+    choice = st.radio("گزینه", labels, index=default_index, key=f"mcq_{qid}")
+    sel_idx = labels.index(choice) if choice in labels else 0
+    sel = options[sel_idx]
+    st.session_state["mcq_answers"][qid] = {
+        "skillTarget": skill,
+        "key": sel.get("key"),
+        "score": sel.get("score"),
+        "text": sel.get("text"),
+    }
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("قبلی", disabled=idx == 0):
+            st.session_state["mcq_index"] = max(0, idx - 1)
             return
-        st.session_state["interview_v2_index"] = min(len(ordered) - 1, index + 1)
-        return
-
-    if finish:
-        ok, message = _validate_all(ordered, answers)
-        if not ok:
-            st.error(message)
+    with col2:
+        if st.button("بعدی", disabled=idx >= len(questions) - 1):
+            st.session_state["mcq_index"] = min(len(questions) - 1, idx + 1)
             return
-        on_finish(answers, list(core_questions))
-
-
-def _render_answer_widget(
-    qid: str,
-    answer_type: str,
-    question: Dict[str, Any],
-    current: Dict[str, Any],
-) -> Dict[str, Any]:
-    if answer_type == "text":
-        value = current.get("text") if isinstance(current, dict) else ""
-        text = st.text_area("پاسخ", value=value or "", height=160, key=f"{qid}_text")
-        return {"text": text.strip()}
-
-    if answer_type == "single_choice":
-        options = question.get("options_fa", [])
-        placeholder = "\u062a\u0648\u0636\u06cc\u062d \u06a9\u0648\u062a\u0627\u0647"
-        radio_options = [placeholder] + list(options)
-        choice = current.get("choice") if isinstance(current, dict) else ""
-        index = radio_options.index(choice) if choice in radio_options else 0
-        selected = st.radio("\u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f", options=radio_options, index=index, key=f"{qid}_choice")
-        return {"choice": "" if selected == placeholder else selected}
-
-    if answer_type == "checkbox+text":
-        options = question.get("options_fa", [])
-        choices = current.get("choices") if isinstance(current, dict) else []
-        if not isinstance(choices, list):
-            choices = []
-        selected = st.multiselect("انتخاب گزینه ها", options=options, default=choices, key=f"{qid}_choices")
-        extra = current.get("text") if isinstance(current, dict) else ""
-        text = st.text_input("توضیح کوتاه (اختیاری)", value=extra or "", key=f"{qid}_extra")
-        return {"choices": selected, "text": text.strip()}
-
-    return {}
-
-
-def _validate_answer(question: Dict[str, Any], answer: Dict[str, Any]) -> tuple[bool, str]:
-    qid = question.get("id")
-    answer_type = question.get("answer_type")
-
-    if answer_type == "text":
-        text = str(answer.get("text", "")).strip()
-        if not text:
-            return False, "پاسخ را کامل کنید."
-        if qid in ("CORE_Q2", "CORE_Q4") and len(text) < 40:
-            return False, "پاسخ باید حداقل ۸۰ کاراکتر باشد."
-        return True, ""
-
-    if answer_type == "single_choice":
-        choice = answer.get("choice")
-        if not choice:
-            return False, "\u0644\u0637\u0641\u0627 \u062d\u062f\u0627\u0642\u0644 \u06cc\u06a9 \u06af\u0632\u06cc\u0646\u0647 \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f."
-        return True, ""
-
-    if answer_type == "checkbox+text":
-        choices = answer.get("choices")
-        if not choices:
-            return False, "حداقل یک گزینه را انتخاب کنید."
-        return True, ""
-
-    return True, ""
-
-
-def _validate_all(questions: List[Dict[str, Any]], answers: Dict[str, Any]) -> tuple[bool, str]:
-    for question in questions:
-        qid = question.get("id")
-        answer = answers.get(qid, {})
-        ok, message = _validate_answer(question, answer)
-        if not ok:
-            return False, f"{question.get('text_fa', '')} - {message}"
-    return True, ""
+    with col3:
+        if st.button("پایان مصاحبه", disabled=idx < len(questions) - 1):
+            scores = _avg_scores(st.session_state["mcq_answers"])
+            on_finish({
+                "level": level,
+                "scores": scores,
+                "goalHorizon": goal_horizon,
+                "timePerWeek": int(time_per_week),
+            })
+            return

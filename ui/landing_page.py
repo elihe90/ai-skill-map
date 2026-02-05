@@ -200,6 +200,7 @@ def _cta_button(key: str) -> None:
                 st.session_state["current_step"] = "auth"
             if "auth_completed" in st.session_state:
                 st.session_state["auth_completed"] = False
+            st.session_state["auth_mode"] = "register"
             if hasattr(st, "rerun"):
                 st.rerun()
             else:
@@ -208,12 +209,7 @@ def _cta_button(key: str) -> None:
 
 def render_landing_page() -> None:
     st.markdown(LANDING_CSS, unsafe_allow_html=True)
-
-    top_left, top_right = st.columns([0.88, 0.12])
-    with top_right:
-        st.image(_asset_path("عیارمهارت.jpg"), width=90)
-
-    col_left, col_right = st.columns([1.2, 1])
+    col_left = st.container()
     with col_left:
         st.markdown(
             "<div class='lp-hero-title'>\u0645\u0633\u06cc\u0631 \u0634\u063a\u0644\u06cc \u0647\u0648\u0634 \u0645\u0635\u0646\u0648\u0639\u06cc \u0631\u0627 \u0634\u0641\u0627\u0641 \u0648 \u0633\u0631\u06cc\u0639 \u0628\u0633\u0627\u0632</div>",
@@ -226,19 +222,6 @@ def render_landing_page() -> None:
         _cta_button("lp_hero_cta")
         st.markdown(
             "<div class='lp-trust'>\u0628\u0631 \u067e\u0627\u06cc\u0647 \u0627\u0633\u062a\u0627\u0646\u062f\u0627\u0631\u062f\u0647\u0627\u06cc \u0645\u0647\u0627\u0631\u062a\u06cc \u0645\u0644\u06cc \u0648 \u062a\u062c\u0631\u0628\u0647 \u0645\u0631\u0628\u06cc\u0627\u0646 \u0628\u0627\u0632\u0627\u0631</div>",
-            unsafe_allow_html=True,
-        )
-
-    with col_right:
-        st.markdown(
-            """
-            <div class="lp-mock">
-                <div class="lp-mock-row" style="width: 70%;"></div>
-                <div class="lp-mock-row" style="width: 55%;"></div>
-                <div class="lp-mock-row" style="width: 80%;"></div>
-                <div class="lp-mock-card"></div>
-            </div>
-            """,
             unsafe_allow_html=True,
         )
 

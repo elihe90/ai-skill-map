@@ -1,0 +1,462 @@
+﻿{
+  "version": "mcq-v1.1-optimized-8-10-12",
+  "skills": [
+    "ai_literacy",
+    "prompting",
+    "office_tools",
+    "data_basics",
+    "bi_tools",
+    "sql",
+    "english",
+    "content_marketing",
+    "sales_crm",
+    "design_tools",
+    "automation_tools",
+    "portfolio"
+  ],
+  "interviewPlans": {
+    "beginner": {
+      "n": 8,
+      "questionIds": [
+        "ai_literacy_01",
+        "prompting_01",
+        "office_tools_01",
+        "english_01",
+        "content_marketing_01",
+        "design_tools_01",
+        "portfolio_01",
+        "data_basics_01"
+      ]
+    },
+    "intermediate": {
+      "n": 10,
+      "questionIds": [
+        "ai_literacy_01",
+        "prompting_01",
+        "office_tools_01",
+        "english_01",
+        "content_marketing_01",
+        "design_tools_01",
+        "portfolio_01",
+        "data_basics_01",
+        "sales_crm_01",
+        "bi_tools_01"
+      ]
+    },
+    "advanced": {
+      "n": 12,
+      "questionIds": [
+        "ai_literacy_01",
+        "prompting_01",
+        "office_tools_01",
+        "english_01",
+        "content_marketing_01",
+        "design_tools_01",
+        "portfolio_01",
+        "data_basics_01",
+        "sales_crm_01",
+        "bi_tools_01",
+        "sql_01",
+        "automation_tools_01"
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "ai_literacy_01",
+      "skillTarget": "ai_literacy",
+      "versions": {
+        "beginner": {
+          "questionFa": "هوش مصنوعی را در کارهای روزمره بیشتر چگونه می‌بینید؟",
+          "options": [
+            {"key": "A", "text": "فقط شنیده‌ام و استفاده نکرده‌ام", "score": 20},
+            {"key": "B", "text": "برای متن/ایده ساده استفاده کرده‌ام", "score": 45},
+            {"key": "C", "text": "برای بهبود یک کار واقعی استفاده کرده‌ام", "score": 70},
+            {"key": "D", "text": "برای بهبود فرایند و استاندارد خروجی استفاده کرده‌ام", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "کاربرد مؤثر AI در کسب‌وکار از نظر شما کدام است؟",
+          "options": [
+            {"key": "A", "text": "تولید محتوا بدون هدف", "score": 30},
+            {"key": "B", "text": "افزایش سرعت کارهای تکراری", "score": 55},
+            {"key": "C", "text": "بهینه‌سازی تصمیم و خروجی استاندارد", "score": 75},
+            {"key": "D", "text": "مزیت رقابتی با داده و اتوماسیون", "score": 95}
+          ]
+        },
+        "advanced": {
+          "questionFa": "کدام تعریف به نگاه حرفه‌ای شما به AI نزدیک‌تر است؟",
+          "options": [
+            {"key": "A", "text": "جایگزین کامل نیروی انسانی", "score": 30},
+            {"key": "B", "text": "ابزار مکمل برای خروجی بهتر", "score": 60},
+            {"key": "C", "text": "جزئی از سیستم تصمیم‌سازی و عملیات", "score": 80},
+            {"key": "D", "text": "محرک تحول محصول/عملیات با طراحی فرایند", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "prompting_01",
+      "skillTarget": "prompting",
+      "versions": {
+        "beginner": {
+          "questionFa": "وقتی خروجی AI دقیق نیست، معمولاً چه می‌کنید؟",
+          "options": [
+            {"key": "A", "text": "همان خروجی را می‌پذیرم", "score": 20},
+            {"key": "B", "text": "یک‌بار دوباره می‌پرسم", "score": 45},
+            {"key": "C", "text": "هدف/زمینه/محدودیت و مثال می‌دهم", "score": 70},
+            {"key": "D", "text": "قالب می‌دهم و چند خروجی را مقایسه می‌کنم", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "برای گرفتن خروجی قابل‌استفاده بیشتر چه می‌کنید؟",
+          "options": [
+            {"key": "A", "text": "سؤال را تکرار می‌کنم", "score": 30},
+            {"key": "B", "text": "مخاطب و هدف و لحن را مشخص می‌کنم", "score": 55},
+            {"key": "C", "text": "قالب + محدودیت + نمونه خروجی می‌دهم", "score": 80},
+            {"key": "D", "text": "پرامپت استاندارد + چک‌لیست کیفیت دارم", "score": 95}
+          ]
+        },
+        "advanced": {
+          "questionFa": "پرامپت مؤثر از نظر شما کدام است؟",
+          "options": [
+            {"key": "A", "text": "کوتاه و مستقیم", "score": 40},
+            {"key": "B", "text": "هدف و مخاطب و لحن مشخص", "score": 65},
+            {"key": "C", "text": "ساختار + معیار خروجی + محدودیت", "score": 85},
+            {"key": "D", "text": "قالب تکرارپذیر + ارزیابی چند خروجی", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "office_tools_01",
+      "skillTarget": "office_tools",
+      "versions": {
+        "beginner": {
+          "questionFa": "در کارهای اداری با چه سطحی از Office راحت هستید؟",
+          "options": [
+            {"key": "A", "text": "تقریباً هیچ تجربه‌ای ندارم", "score": 20},
+            {"key": "B", "text": "Word/PowerPoint ساده", "score": 45},
+            {"key": "C", "text": "Excel ساده + گزارش کوتاه", "score": 70},
+            {"key": "D", "text": "گزارش‌سازی منظم با Excel", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "در Excel بیشتر کدام کار را انجام می‌دهید؟",
+          "options": [
+            {"key": "A", "text": "فرمول‌های خیلی ساده", "score": 35},
+            {"key": "B", "text": "فرمول + مرتب‌سازی", "score": 55},
+            {"key": "C", "text": "گزارش و نمودار", "score": 75},
+            {"key": "D", "text": "Pivot و گزارش مدیریتی", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "توان گزارش‌دهی شما با Office در چه سطحی است؟",
+          "options": [
+            {"key": "A", "text": "آماده‌سازی متن/اسلاید", "score": 40},
+            {"key": "B", "text": "گزارش پایه + نمودار", "score": 65},
+            {"key": "C", "text": "داشبورد ساده + روایت داده", "score": 85},
+            {"key": "D", "text": "قالب سازمانی + استانداردسازی خروجی", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "english_01",
+      "skillTarget": "english",
+      "versions": {
+        "beginner": {
+          "questionFa": "برای کار با ابزارها و منابع انگلیسی AI چقدر راحت هستید؟",
+          "options": [
+            {"key": "A", "text": "تقریباً نمی‌توانم", "score": 20},
+            {"key": "B", "text": "با ترجمه و کمک پیش می‌روم", "score": 45},
+            {"key": "C", "text": "مستندات ساده را می‌فهمم", "score": 70},
+            {"key": "D", "text": "مستندات را راحت می‌خوانم و خلاصه می‌کنم", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "برای یادگیری ابزار جدید AI، سطح انگلیسی شما کدام است؟",
+          "options": [
+            {"key": "A", "text": "وابسته به ترجمه", "score": 30},
+            {"key": "B", "text": "خواندن ساده با کمک", "score": 55},
+            {"key": "C", "text": "خواندن مستندات متوسط", "score": 75},
+            {"key": "D", "text": "خواندن و نوشتن روان در فروم‌ها", "score": 95}
+          ]
+        },
+        "advanced": {
+          "questionFa": "توان شما در منابع تخصصی انگلیسی AI چقدر است؟",
+          "options": [
+            {"key": "A", "text": "ضعیف", "score": 30},
+            {"key": "B", "text": "متوسط", "score": 60},
+            {"key": "C", "text": "خوب", "score": 80},
+            {"key": "D", "text": "عالی (Docs + مقاله + حل مسئله)", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "content_marketing_01",
+      "skillTarget": "content_marketing",
+      "versions": {
+        "beginner": {
+          "questionFa": "در تولید محتوا (متن/کپشن/ایده) کدام وضعیت به شما نزدیک‌تر است؟",
+          "options": [
+            {"key": "A", "text": "هیچ تجربه‌ای ندارم", "score": 20},
+            {"key": "B", "text": "گاهی متن کوتاه نوشته‌ام", "score": 45},
+            {"key": "C", "text": "محتوای منظم تولید کرده‌ام", "score": 70},
+            {"key": "D", "text": "برای هدف مشخص محتوا سنجیده‌ام", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "در تولید محتوای هدفمند کدام را انجام داده‌اید؟",
+          "options": [
+            {"key": "A", "text": "فقط متن‌های پراکنده", "score": 35},
+            {"key": "B", "text": "تقویم ساده + چند قالب", "score": 55},
+            {"key": "C", "text": "تقویم + پرسونا + بهینه‌سازی", "score": 75},
+            {"key": "D", "text": "کمپین + KPI + گزارش", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "توان شما در تولید محتوای تبدیل‌کننده چقدر است؟",
+          "options": [
+            {"key": "A", "text": "کم", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب", "score": 85},
+            {"key": "D", "text": "عالی (A/B و KPI و قیف)", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "design_tools_01",
+      "skillTarget": "design_tools",
+      "versions": {
+        "beginner": {
+          "questionFa": "در ابزارهای طراحی (مثل Canva) کدام به شما نزدیک‌تر است؟",
+          "options": [
+            {"key": "A", "text": "اصلاً کار نکرده‌ام", "score": 20},
+            {"key": "B", "text": "با قالب آماده کاور ساده می‌سازم", "score": 45},
+            {"key": "C", "text": "پست/استوری و اسلاید استاندارد می‌سازم", "score": 70},
+            {"key": "D", "text": "خروجی منظم و قابل ارائه تولید می‌کنم", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "برای تولید محتوای بصری در چه سطحی هستید؟",
+          "options": [
+            {"key": "A", "text": "پایه", "score": 35},
+            {"key": "B", "text": "متوسط", "score": 55},
+            {"key": "C", "text": "خوب (خروجی سریالی)", "score": 75},
+            {"key": "D", "text": "حرفه‌ای (پکیج محتوا)", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "چقدر می‌توانید خروجی بصری حرفه‌ای بسازید؟",
+          "options": [
+            {"key": "A", "text": "کم", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب", "score": 85},
+            {"key": "D", "text": "عالی (استانداردسازی + نتیجه)", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "portfolio_01",
+      "skillTarget": "portfolio",
+      "versions": {
+        "beginner": {
+          "questionFa": "در حال حاضر نمونه‌کار مرتبط با AI دارید؟",
+          "options": [
+            {"key": "A", "text": "هیچ نمونه‌کاری ندارم", "score": 20},
+            {"key": "B", "text": "۱ نمونه ساده دارم", "score": 45},
+            {"key": "C", "text": "۳ نمونه واقعی دارم", "score": 70},
+            {"key": "D", "text": "نمونه‌کار قابل ارائه به کارفرما دارم", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "چند نمونه‌کار قابل ارائه دارید؟",
+          "options": [
+            {"key": "A", "text": "هیچ", "score": 35},
+            {"key": "B", "text": "۱ تا ۲ نمونه", "score": 55},
+            {"key": "C", "text": "۳ تا ۵ نمونه", "score": 75},
+            {"key": "D", "text": "بیش از ۵ نمونه", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "کیفیت نمونه‌کارهای شما در چه سطحی است؟",
+          "options": [
+            {"key": "A", "text": "پایه", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب", "score": 85},
+            {"key": "D", "text": "حرفه‌ای و قابل تکرار", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "data_basics_01",
+      "skillTarget": "data_basics",
+      "versions": {
+        "beginner": {
+          "questionFa": "وقتی با فایل داده روبه‌رو می‌شوید چه می‌توانید انجام دهید؟",
+          "options": [
+            {"key": "A", "text": "فقط نگاه می‌کنم", "score": 20},
+            {"key": "B", "text": "مرتب‌سازی و فیلتر ساده", "score": 45},
+            {"key": "C", "text": "پاک‌سازی ساده و خلاصه‌سازی", "score": 70},
+            {"key": "D", "text": "تحلیل اولیه + نمودار", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "در کار با داده‌ها بیشتر کدام را انجام داده‌اید؟",
+          "options": [
+            {"key": "A", "text": "فقط مشاهده داده", "score": 30},
+            {"key": "B", "text": "پاک‌سازی ساده", "score": 55},
+            {"key": "C", "text": "تحلیل و گزارش", "score": 75},
+            {"key": "D", "text": "تحلیل ساختاریافته با KPI", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "سطح تحلیل داده شما در عمل چگونه است؟",
+          "options": [
+            {"key": "A", "text": "پایه", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب", "score": 85},
+            {"key": "D", "text": "حرفه‌ای (تحلیل + روایت)", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "sales_crm_01",
+      "skillTarget": "sales_crm",
+      "versions": {
+        "beginner": {
+          "questionFa": "در فروش/CRM چه تجربه‌ای دارید؟",
+          "options": [
+            {"key": "A", "text": "هیچ تجربه‌ای ندارم", "score": 20},
+            {"key": "B", "text": "ارتباط با مشتری اما غیرسیستماتیک", "score": 45},
+            {"key": "C", "text": "پیگیری مشتری با لیست و پیام", "score": 70},
+            {"key": "D", "text": "طراحی فرایند فروش و گزارش", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "در پیگیری مشتری کدام را بهتر انجام می‌دهید؟",
+          "options": [
+            {"key": "A", "text": "پیگیری نامنظم", "score": 35},
+            {"key": "B", "text": "پیگیری منظم با قالب پیام", "score": 55},
+            {"key": "C", "text": "تقسیم‌بندی مشتری + گزارش", "score": 75},
+            {"key": "D", "text": "قیف فروش + KPI + بهینه‌سازی پیام", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "در طراحی فرایند فروش و CRM در چه سطحی هستید؟",
+          "options": [
+            {"key": "A", "text": "کم", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب", "score": 85},
+            {"key": "D", "text": "عالی (فرایند + KPI + اتوماسیون)", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "bi_tools_01",
+      "skillTarget": "bi_tools",
+      "versions": {
+        "beginner": {
+          "questionFa": "تجربه شما در داشبورد/KPI (مثلاً Power BI) چیست؟",
+          "options": [
+            {"key": "A", "text": "هیچ تجربه‌ای ندارم", "score": 20},
+            {"key": "B", "text": "داشبورد دیده‌ام و می‌فهمم", "score": 45},
+            {"key": "C", "text": "داشبورد ساده ساخته‌ام", "score": 70},
+            {"key": "D", "text": "داشبورد مدیریتی ساخته‌ام", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "در ابزارهای BI کدام کار را انجام داده‌اید؟",
+          "options": [
+            {"key": "A", "text": "تقریباً هیچ", "score": 30},
+            {"key": "B", "text": "گزارش ساده و چند نمودار", "score": 55},
+            {"key": "C", "text": "داشبورد چندشاخصه", "score": 75},
+            {"key": "D", "text": "داشبورد مدیریتی با KPI استاندارد", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "توان شما در گزارش‌سازی BI چقدر است؟",
+          "options": [
+            {"key": "A", "text": "پایه", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب", "score": 85},
+            {"key": "D", "text": "حرفه‌ای (روایت + KPI)", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "sql_01",
+      "skillTarget": "sql",
+      "versions": {
+        "beginner": {
+          "questionFa": "اگر نیاز به گزارش از دیتابیس باشد، در چه سطحی هستید؟",
+          "options": [
+            {"key": "A", "text": "اصلاً بلد نیستم", "score": 20},
+            {"key": "B", "text": "مفاهیم را می‌دانم", "score": 45},
+            {"key": "C", "text": "SELECT/WHERE ساده می‌نویسم", "score": 70},
+            {"key": "D", "text": "JOIN و گزارش ترکیبی می‌زنم", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "در SQL کدام کار را انجام داده‌اید؟",
+          "options": [
+            {"key": "A", "text": "فقط آشنایی سطحی", "score": 35},
+            {"key": "B", "text": "کوئری ساده و گزارش محدود", "score": 55},
+            {"key": "C", "text": "JOIN و گزارش چندجدولی", "score": 75},
+            {"key": "D", "text": "بهینه‌سازی کوئری و گزارش منظم", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "سطح تحلیل داده با SQL شما چیست؟",
+          "options": [
+            {"key": "A", "text": "مقدماتی", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب (تحلیل + شاخص)", "score": 85},
+            {"key": "D", "text": "حرفه‌ای (طراحی گزارش پایدار)", "score": 95}
+          ]
+        }
+      }
+    },
+    {
+      "id": "automation_tools_01",
+      "skillTarget": "automation_tools",
+      "versions": {
+        "beginner": {
+          "questionFa": "در اتوماسیون کارها کدام مورد به شما نزدیک‌تر است؟",
+          "options": [
+            {"key": "A", "text": "هیچ تجربه‌ای ندارم", "score": 20},
+            {"key": "B", "text": "چند ابزار را می‌شناسم", "score": 45},
+            {"key": "C", "text": "یک سناریو ساده ساخته‌ام", "score": 70},
+            {"key": "D", "text": "چند فرایند واقعی را اتوماسیون کرده‌ام", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "در ابزارهای اتوماسیون کدام را انجام داده‌اید؟",
+          "options": [
+            {"key": "A", "text": "تقریباً هیچ", "score": 35},
+            {"key": "B", "text": "چند سناریو ساده", "score": 55},
+            {"key": "C", "text": "چند فرایند واقعی با خطاگیری", "score": 75},
+            {"key": "D", "text": "اتوماسیون حرفه‌ای و مستندسازی", "score": 90}
+          ]
+        },
+        "advanced": {
+          "questionFa": "توان شما در طراحی اتوماسیون فرایندها چقدر است؟",
+          "options": [
+            {"key": "A", "text": "پایه", "score": 40},
+            {"key": "B", "text": "متوسط", "score": 65},
+            {"key": "C", "text": "خوب", "score": 85},
+            {"key": "D", "text": "عالی (قابل مقیاس و گزارش)", "score": 95}
+          ]
+        }
+      }
+    }
+  ]
+}

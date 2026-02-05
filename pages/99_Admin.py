@@ -27,6 +27,7 @@ def _users_table_rows(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 "current_step": record.get("current_step", ""),
                 "track": gap.get("track", "") or record.get("track", ""),
                 "created_at": record.get("created_at", ""),
+                "last_login_at": record.get("last_login_at", ""),
             }
         )
     return rows

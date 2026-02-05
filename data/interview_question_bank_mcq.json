@@ -1,0 +1,51 @@
+﻿{
+  "skills": [
+    "ai_literacy",
+    "prompting",
+    "office_tools",
+    "data_basics",
+    "bi_tools",
+    "sql",
+    "english",
+    "content_marketing",
+    "sales_crm",
+    "design_tools",
+    "automation_tools",
+    "portfolio"
+  ],
+  "questions": [
+    {
+      "id": "prompting_01",
+      "skillTarget": "prompting",
+      "versions": {
+        "beginner": {
+          "questionFa": "وقتی خروجی ChatGPT خوب نیست، معمولاً چه کاری انجام می‌دهید؟",
+          "options": [
+            {"key": "A", "text": "همان را می‌پذیرم", "score": 20},
+            {"key": "B", "text": "یک بار دوباره می‌پرسم", "score": 45},
+            {"key": "C", "text": "جزئیات و محدودیت‌ها را اضافه می‌کنم", "score": 70},
+            {"key": "D", "text": "ساختار/قالب می‌دهم و چند نسخه را ارزیابی می‌کنم", "score": 90}
+          ]
+        },
+        "intermediate": {
+          "questionFa": "برای گرفتن خروجی بهتر، از چه روشی استفاده می‌کنید؟",
+          "options": [
+            {"key": "A", "text": "سؤال را تکرار می‌کنم", "score": 30},
+            {"key": "B", "text": "مخاطب و هدف را می‌گویم", "score": 55},
+            {"key": "C", "text": "قالب + لحن + محدودیت می‌دهم", "score": 80},
+            {"key": "D", "text": "پرامپت استاندارد + ارزیابی خروجی", "score": 95}
+          ]
+        },
+        "advanced": {
+          "questionFa": "پرامپت مؤثر از دید شما چیست؟",
+          "options": [
+            {"key": "A", "text": "سؤال کوتاه و مستقیم", "score": 40},
+            {"key": "B", "text": "شامل هدف و لحن", "score": 65},
+            {"key": "C", "text": "دارای ساختار و معیار خروجی", "score": 85},
+            {"key": "D", "text": "قالب تکرارپذیر + ارزیابی چندگزینه‌ای", "score": 95}
+          ]
+        }
+      }
+    }
+  ]
+}
